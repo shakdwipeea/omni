@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "conn.js",
+  "sourceRoot": "../../..",
+  "sources": [
+    "WebstormProjects/Omniscient/database/conn.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA,KAAA;;AAAA,EAAA,KAAA,GAAQ,OAAA,CAAQ,OAAR,CAAR,CAAA;;AAAA,EACA,MAAM,CAAC,OAAP,GACE;AAAA,IAAA,IAAA,EAAK,WAAL;AAAA,IACA,IAAA,EAAK,MADL;AAAA,IAEA,QAAA,EAAS,EAFT;AAAA,IAGA,QAAA,EAAS,YAHT;GAFF,CAAA;AAAA"
+}

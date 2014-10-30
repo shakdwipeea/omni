@@ -1,0 +1,33 @@
+.navbar-inverse .navbar-brand {
+	color: #FFF;
+	font-size: 2em;
+	text-transform: uppercase;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #FFF;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+	background-color: red;
+}
+
+.table-responsive {
+	font-size: 1.3em;
+	vertical-align: middle;
+}
+
+.table-responsive table tr td {
+	vertical-align: middle;
+}
+
+.att_green, .att_red {
+	display: inline-block;	
+	height: 30px;
+	width: 30px;
+}
+
+.att_green { background-color: green;}
+.att_red { background-color: red; }
+
+.link_active { background-color: red; color: #FFF;}

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "api.js",
+  "sourceRoot": "../../..",
+  "sources": [
+    "WebstormProjects/Omniscient/routes/api.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA,SAAA;;AAAA,EAAA,SAAA,GAAY,SAAC,GAAD,GAAA;WACV,GAAG,CAAC,GAAJ,CAAQ,sBAAR,EAAgC,SAAC,GAAD,EAAK,GAAL,GAAA;AAC9B,UAAA,OAAA;AAAA,MAAA,OAAA,GAAU,GAAG,CAAC,IAAd,CAAA;aACA,GAAG,CAAC,MAAJ,CAAW,GAAX,CAAe,CAAC,IAAhB,CAAqB,OAArB,EAF8B;IAAA,CAAhC,EADU;EAAA,CAAZ,CAAA;;AAAA,EAKA,MAAM,CAAC,OAAP,GAAiB,SALjB,CAAA;AAAA"
+}

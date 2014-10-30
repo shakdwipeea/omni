@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>Omniscient</title>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/styles.css" rel="stylesheet">
+    <link href="/stylesheets/carousel.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dash.css">
+    <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" media="screen">
+
+
+    <!--Angular js -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  </head>
+  <body ng-app="omni">
+    
+  <div ui-view></div>
+
+    <script type="text/javascript" src='/javascripts/ui-router.js'></script>
+
+
+    <!-- Custom Js ui -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/bootstrap-carousel.js"></script>
+    <script>
+     
+      $(function(){
+       
+          $(document).on( 'scroll', function(){
+       
+              if ($(window).scrollTop() > 100) {
+                  $('.scroll-top-wrapper').addClass('show');
+              } else {
+                  $('.scroll-top-wrapper').removeClass('show');
+              }
+          });
+       
+          $('.scroll-top-wrapper').on('click', scrollToTop);
+      });
+       
+      function scrollToTop() {
+          verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+          element = $('body');
+          offset = element.offset();
+          offsetTop = offset.top;
+          $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+      }
+    </script>
+
+
+    <!--custom js angular -->
+    <script type="text/javascript" src='/javascripts/app.js'></script>
+    <script type="text/javascript" src='/javascripts/controllers/HomeController.js'></script>
+
+  </body>
+</html>
