@@ -5,7 +5,7 @@ module.exports = (req,profileCallback)->
   profile = {}
   connection = mysql.createConnection conn
 
-  q = "select * from student_details where USN = '" + req.usn + "'"
+  q = "select * from student_details where usn = '" + req.usn + "'"
   console.log(q)
   query = connection.query q, (err,rows) ->
     if err then console.log(err)

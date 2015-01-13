@@ -3,4 +3,4 @@ module.exports =
   host:'localhost',
   user:'root',
   password:'',
-  database:'Omniscient'
+  database:'Omni'

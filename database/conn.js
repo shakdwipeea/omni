@@ -8,7 +8,7 @@
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'Omniscient'
+    database: 'Omni'
   };
 
 }).call(this);

@@ -6,10 +6,12 @@ var request = require('request');
 var url = 'http://localhost:3000';
 describe('Api path to fetch content', function () {
     var token;
+    var loginUsn = '1RV13CS065';
+    var loginPass = 'abcxyz065';
 
     beforeEach(function (done) {
-        request.post({url:url + '/login' , form: { usn:'1RV13CS011',password:'shakdwipeea' } }, function (err, res, body) {
-            console.log(body)
+        request.post({url:url + '/login' , form: { usn:loginUsn,password:loginPass } }, function (err, res, body) {
+            console.log(' Before Each ' ,body);
             token = JSON.parse(body).token;
             done();
         });
@@ -21,7 +23,7 @@ describe('Api path to fetch content', function () {
                 'bearer':token
             }
         }, function (err, res, body) {
-            assert.notEqual(JSON.parse(body).USN,undefined);
+            assert.notEqual(JSON.parse(body).usn,undefined);
             done();
         });
     });
@@ -32,6 +34,21 @@ describe('Api path to fetch content', function () {
             done();
         });
         });
+
+    it('should give the list of subjects the student has ', function (done) {
+        request.post(url + '/api/student_subject',{
+            'auth': {
+                'bearer': token
+            }
+        }, function (err,res,body) {
+            console.log(body);
+            body = JSON.parse(body);
+            assert.equal(body.usn,loginUsn);
+            done();
+        })
+    })
+
+
     });
 
 

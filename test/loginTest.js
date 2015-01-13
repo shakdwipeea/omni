@@ -8,15 +8,17 @@ var fs = require('fs');
 
 var url = 'http://localhost:3000';
 
+var loginUsn = '1RV12CS118';
+var loginPass = 'abcxyz112';
+
+var loginTeacherUsn = '1RV12TCS075';
+var loginTeacherPassword = 'abcxyz261';
+
 describe('login functionality', function () {
 
-
-
-
-
     it('should return a token', function (done) {
-        request.post({url: url + '/login', form: { usn:'1RV13CS011',password:'shakdwipeea' } }, function (err, res, body) {
-            console.log(body)
+        request.post({url: url + '/login', form: { usn:loginUsn,password:loginPass } }, function (err, res, body) {
+            console.log(body);
             assert.notEqual(JSON.parse(body).token,undefined);
             done();
         });
@@ -29,6 +31,22 @@ describe('login functionality', function () {
             assert.equal(res.statusCode,401);
             done();
         });
+    })
+
+    it('should log the teacher in and return a token', function (done) {
+        request.post({url:url + '/login_staff', form: {
+            username: loginTeacherUsn,
+            password: loginTeacherPassword
+        }}, function (err, res, body) {
+            console.log(body);
+            if(res.statusCode == 200) {
+                body = JSON.parse(body);
+                assert.notEqual(body.token,undefined);
+                done();
+            } else {
+                assert.equal(1,2);
+            }
+        })
     })
 })
 

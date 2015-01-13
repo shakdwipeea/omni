@@ -2,6 +2,9 @@
 var jwt = require('jsonwebtoken');
 var router = express.Router();*/
 
+//todo:verify password before logging in
+
+
 var router = function (app,jwt) {
   app.get('/', function(req, res) {
     res.render('index', { title: 'Express' });
@@ -11,21 +14,11 @@ var router = function (app,jwt) {
 
     console.log('Recieved post data' , req.body);
 
-
+    //Student login
     //Logging in by checking usn and password
     var studentProfile = require('../database/student_prof');
 
     studentProfile(req.body, function (profile) {
-      /*if(!(req.body.usn == 'akash' && req.body.password == 'akash')) {
-        res.send(401, 'Wrong username and password here hh');
-        return;
-      }
-
-      var profile = {
-        username: 'Akash',
-        branch: 'Computer Science',
-        usn: '1RV13CS011'
-      }*/
 
       console.log(profile);
       if(!profile) {
@@ -38,6 +31,30 @@ var router = function (app,jwt) {
 
     });
     });
+
+  app.post('/login_staff', function (req, res) {
+    var teacherProfile = require('../database/teacher_prof');
+
+    teacherProfile(req.body, function (err,profile) {
+      if(err) {
+        console.log(err);
+        res.status(401).send('Wrong credentials');
+      }
+
+      if(profile) {
+        var token = jwt.sign(profile, app.get('secret'), {expiresInMinutes: 60 * 5});
+        res.json({token: token});
+      } else {
+        res.status(500).send('Internal error');
+      }
+
+
+
+    })
+
+  })
+
+
 
 }
 

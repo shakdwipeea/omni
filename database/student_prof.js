@@ -6,7 +6,7 @@
     mysql = require('mysql');
     profile = {};
     connection = mysql.createConnection(conn);
-    q = "select * from student_details where USN = '" + req.usn + "'";
+    q = "select * from student_details where usn = '" + req.usn + "'";
     console.log(q);
     return query = connection.query(q, function(err, rows) {
       if (err) {
