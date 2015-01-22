@@ -27,15 +27,18 @@ angular.module('omni',['ui.router'])
 		})
 		.state('student_appraisal_detail', {
 			url:'/appraisal',
-			templateUrl:'/templates/appraisal_detail.ejs'
+			templateUrl:'/templates/appraisal_detail.ejs',
+			controller:'AppraisalController'
 		})
 		.state('student_appraisal_login',{
 			url:'/student_login',
-			templateUrl:'/templates/appraisal_index.ejs'
+			templateUrl:'/templates/appraisal_index.ejs',
+			controller:'StudentLoginController'
 		})
 		.state('staff_appraisal_login', {
 			url:'/staff_login',
-			templateUrl:'/templates/appraisal_login.ejs'
+			templateUrl:'/templates/appraisal_login.ejs',
+			controller:'StaffLoginController'
 		})
 		;
 

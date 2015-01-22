@@ -9,7 +9,7 @@
 
 	      </a>
 	    </div>
-	    <a href="login.html"><p class="navbar-text navbar-right navbar-link">Staff Login</p></a>
+	    <a ui-sref="staff_appraisal_login"><p class="navbar-text navbar-right navbar-link">Staff Login</p></a>
 	  </div>
 	</nav>
 
@@ -17,14 +17,14 @@
 		<div class="vertical-center">
 			<article class="box">
 				<h2>Log In</h2>
-				<form action="detail.html">
+				<form>
 					<label class="field-label">
 					USN
 					</label>
 					<div class="input-group">
-						<input type="text" class="input large" value maxlength="10">
+						<input ng-model="student_usn" type="text" class="input large" value maxlength="10">
 						<div class="button-group">
-							<button type="submit" class="button is-info large" role="button">Login</button>
+							<button ng-submit="loginStudent()" type="submit" class="button is-info large" role="button">Login</button>
 						</div>
 					</div>
 	
