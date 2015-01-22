@@ -25,6 +25,18 @@ angular.module('omni',['ui.router'])
 			url:'/subject',
 			templateUrl:'/templates/student.sub.ejs'
 		})
+		.state('student_appraisal_detail', {
+			url:'/appraisal',
+			templateUrl:'/templates/appraisal_detail.ejs'
+		})
+		.state('student_appraisal_login',{
+			url:'/student_login',
+			templateUrl:'/templates/appraisal_index.ejs'
+		})
+		.state('staff_appraisal_login', {
+			url:'/staff_login',
+			templateUrl:'/templates/appraisal_login.ejs'
+		})
 		;
 
 
