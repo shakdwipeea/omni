@@ -5,6 +5,7 @@ html {
 body {
 	background-color: #f0f1f2;
 	color: #000;
+	padding-top: 0;
 }
 
 .navbar-default {
@@ -21,6 +22,11 @@ body {
 
 .navbar-default .navbar-link {
 	color: #FFF;
+}
+
+.brand-text {
+	font-size: 2em;
+	
 }
 
 .title-bar {
