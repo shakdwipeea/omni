@@ -44,6 +44,10 @@ angular.module('omni',['ui.router'])
 			url:'/staff_dashboard',
 			templateUrl:'/templates/appraisal_staff_dashboard.ejs'
 		})
+		.state('staff_report',{
+			url:'/staff_report',
+			templateUrl:'/templates/staff_report.ejs'
+		})
 		;
 
 
