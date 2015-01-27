@@ -76,6 +76,11 @@ body {
 	line-height: normal;
 }
 
+.padding {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
 .button.is-info {
 	background-color: #4285f4;
 }
