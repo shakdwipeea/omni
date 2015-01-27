@@ -80,10 +80,36 @@ body {
 	padding-left: 15px;
 	padding-right: 15px;
 }
+.table-report {
+	font-size: 20px;
+	margin: 0 auto;
+}
+.padding-bott {
+	padding-bottom: 22px;
+}
 
+.inner {
+	position: absolute;
+}
+
+.rvce {
+	font-size: 3.5em;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.boxed {background-color: #FFF;padding: 5%;}
+
+.text-center {
+	text-align: center;
+}
+.gap {
+	margin-top: 230px;
+}
 .button.is-info {
 	background-color: #4285f4;
 }
+
 
 .button.large, .large .button {
 	font-size: 1.3rem;
@@ -178,6 +204,10 @@ ol.questions > li {
 	margin-left: 20px;
 }
 
+.logorv {
+	width: 170px;
+}
+
 @media (max-width: 768px) {
 	.container {
 		width: 90%;
@@ -220,4 +250,47 @@ ol.questions > li {
 		padding-left: 5px;
 		padding-right: 5px;
 	}
+}
+
+@media print {
+	.rvce {
+		font-size: 2em;
+	}
+	.rvce2 {
+		font-size: 1.7em;
+	}
+	.logorv {
+		width: 100px;
+	}
+
+	h4 {
+		font-size: 0.8em;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	h3 {
+		font-size: 1em;
+	}
+
+	h1, .h1, h2, .h2, h3, .h3 {
+		margin-top: 0;
+		margin-bottom: 5px;
+	}
+
+	.padding-bott {
+		padding-bottom: 5px;
+	}
+	.gap {
+		margin-top: 100px;
+	}
+
+	.table-report {
+		font-size: 14px;
+	}
+
+	.boxed {
+		padding: 0;
+	}
+
 }
