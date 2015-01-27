@@ -1,17 +1,10 @@
 angular.module('omni')
-    .controller('StudentLoginController', function ($scope,$state,$http) {
+    .controller('StudentLoginController', function ($scope,$state,$http,AppraisalFactory) {
         $scope.loginStudent = function () {
-            console.log('hello');
-            $http
-            .post('/student_appraisal_login',{
-                usn: $scope.student_usn
-            })
-            .success(function  (payload) {
-                console.log(payload);
-                // body...
-            }).error(function  (error) {
-                // body...
-                console.log(error);
-            })
+            console.log('hello');   
+            var TeacherDetails = AppraisalFactory.getTeachers($scope.student_usn);
+            if (TeacherDetails) {
+                $state.go('student_appraisal_detail');
+            }
         }
     })

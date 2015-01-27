@@ -9,16 +9,30 @@ var appraisalApi = function(app) {
         appraisalHelper = require('../database/student_appraisal');
         if (req.body.usn) {
             appraisalHelper(req.body.usn, function(sem) {
-                if (sem !== null) {
+                
+
+                if (sem === "No such Usn") {
+                    res.status(500).json({
+                        err:'No usn found'
+                    });
+                }
+
+                else if (sem !== null) {
                     console.log(sem);
                     res.json(sem);
-                } else {
+                }
+
+                else {
                     return res.json({
                         err: 'Error'
                     });
                 }
             });
         }
+    });
+
+    app.get('/get_appraisal_questions', function  (req,res) {
+         getQuestionHelper = require('../database/appraisal_questions')(res);
     });
 };
 
