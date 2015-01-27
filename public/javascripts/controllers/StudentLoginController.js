@@ -2,9 +2,12 @@ angular.module('omni')
     .controller('StudentLoginController', function ($scope,$state,$http,AppraisalFactory) {
         $scope.loginStudent = function () {
             console.log('hello');   
-            var TeacherDetails = AppraisalFactory.getTeachers($scope.student_usn);
-            if (TeacherDetails) {
-                $state.go('student_appraisal_detail');
-            }
+            AppraisalFactory.getTeachers($scope.student_usn)
+            .then(function  (data) {
+                console.log("Data ", data);
+                if (data) {
+                    $state.go('student_appraisal_detail');
+                };
+            });
         }
     })

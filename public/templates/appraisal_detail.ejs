@@ -17,12 +17,12 @@
 		<div class="row content">
 			<div class="col-lg-4 col-sm-4">
 				<h3> Faculty </h3>
-				<div class="list-group">
-				  <a href="#" class="list-group-item active">
+				<div class="list-group" ng-repeat="(key,value) in teachers">
+				  <a ng-click="loadQuestion(key)" class="list-group-item">
 				  	<div class="row">
 						<div class="col-md-9">
-							<h4 class="list-group-item-heading">Nivya Muchikel</h4>
-				    		<p class="list-group-item-text">12MA41</p>
+							<h4 class="list-group-item-heading">{{value.details.first_name}}</h4>
+				    		<p class="list-group-item-text">{{key}}</p>
 						</div>
 						<div class="col-md-3">
 							<span id="q1_badge" class="badge badge-active badge-disabled">DONE</span>
@@ -30,85 +30,6 @@
 				  	</div>
 
 				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="row">
-						<div class="col-md-9">
-							<h4 class="list-group-item-heading">Dr. Hareesh</h4>
-				    		<p class="list-group-item-text">12EB42</p>
-						</div>
-						<div class="col-md-3">
-							<span class="badge badge-disabled">DONE</span>
-						</div>
-				  	</div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="row">
-						<div class="col-md-9">
-						  	<h4 class="list-group-item-heading">Smriti Srivastava</h4>
-						    <p class="list-group-item-text">12CS43</p>
-						</div>
-						<div class="col-md-3">
-							<span class="badge badge-disabled">DONE</span>
-						</div>
-					</div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="row">
-						<div class="col-md-9">
-				  			<h4 class="list-group-item-heading">Anupama H S</h4>
-				    		<p class="list-group-item-text">12CS44</p>
-				    	</div>
-				    	<div class="col-md-3">
-				    		<span class="badge badge-disabled">DONE</span>
-				    	</div>
-				    </div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="row">
-						<div class="col-md-9">
-				  			<h4 class="list-group-item-heading">Ganashree K C</h4>
-				    		<p class="list-group-item-text">12CS45</p>
-				    	</div>
-				    	<div class="col-md-3">
-				    		<span class="badge badge-disabled">DONE</span>
-				    	</div>
-				    </div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="row">
-						<div class="col-md-9">
-				  			<h4 class="list-group-item-heading">Sharadadevi</h4>
-				    		<p class="list-group-item-text">12CS46</p>
-				    	</div>
-				    	<div class="col-md-3">
-				    		<span class="badge badge-disabled">DONE</span>
-				    	</div>
-				    </div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="row">
-						<div class="col-md-9">
-				  			<h4 class="list-group-item-heading">Dr. Krishnappa H K</h4>
-				    		<p class="list-group-item-text">12CS54(L)</p>
-				    	</div>
-				    	<div class="col-md-3">
-				    		<span class="badge badge-disabled">DONE</span>
-				    	</div>
-				    </div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="row">
-						<div class="col-md-9">
-				  			<h4 class="list-group-item-heading">Lalitha VP</h4>
-				    		<p class="list-group-item-text">12CS46(L)</p>
-				    	</div>
-				    	<div class="col-md-3">
-				    		<span class="badge badge-disabled">DONE</span>
-				    	</div>
-
-				    </div>
-				  </a>
-				  
 				</div>
 
 				<button type="button" class="btn btn-default btn-final btn-lg">Submit</button>
@@ -128,7 +49,7 @@
 				  		<tbody>
 					  		<tr>
 					  			<td> <h4> Staff Name: </h4></td>
-					  			<td> <h4> <strong>Nivya Muchikel</strong> </h4></td>
+					  			<td> <h4> <strong>{{active.teacher.details.first_name}}</strong> </h4></td>
 					  		</tr>				  		
 					  		<tr>
 					  			<td> <h4> Subject: </h4></td>
@@ -136,7 +57,7 @@
 					  		</tr>				  		
 					  		<tr>
 					  			<td> <h4>Code: </h4></td>
-					  			<td> <h4> <strong>12MA41</strong> </h4></td>
+					  			<td> <h4> <strong>{{active.id}}</strong> </h4></td>
 					  		</tr>
 				  		</tbody>
 				  	</table>
@@ -147,7 +68,7 @@
 					<div class="panel-heading">Feedback</div>
 					<div class="panel-body panel-feedback">
 						<ol class="questions">
-							<li ng-repeat = "question in theoryQuestions">
+							<li ng-repeat = "question in questions track by $index">
 								<h4><strong>{{question.q_text}}</strong></h4>
 								<div class="radio">
 							      <label><input type="radio" class="rad-btn" name="question1">{{question.q_a1}}</label>
