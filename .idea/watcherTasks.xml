@@ -13,9 +13,9 @@
       <option name="outputFilters">
         <array />
       </option>
-      <option name="outputFromStdout" value="false" />
+      <option name="outputFromStdout" value="true" />
       <option name="passParentEnvs" value="true" />
-      <option name="program" value="$USER_HOME$/.nvm/v0.10.32/bin/coffee" />
+      <option name="program" value="$USER_HOME$/.nvm/v0.10.35/bin/coffee" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="true" />
       <option name="workingDir" value="" />
