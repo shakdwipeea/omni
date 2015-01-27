@@ -80,6 +80,17 @@ body {
 	padding-left: 15px;
 	padding-right: 15px;
 }
+.table-report {
+	font-size: 20px;
+}
+
+.rvce {
+	font-size: 4em;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.boxed {border: 1px solid gray;}
 
 .button.is-info {
 	background-color: #4285f4;
