@@ -7,6 +7,6 @@
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'Omni'
+    database: 'omni'
   };
 

@@ -11,9 +11,11 @@ var appraisalApi = function(app) {
             appraisalHelper(req.body.usn, function(sem) {
                 if (sem !== null) {
                     console.log(sem);
-                    (res.json(sem));
+                    res.json(sem);
                 } else {
-                    return res.statusCode(500).end('Error');
+                    return res.json({
+                        err: 'Error'
+                    });
                 }
             });
         }
