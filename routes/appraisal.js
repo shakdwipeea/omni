@@ -5,7 +5,7 @@
 var appraisalApi = function(app) {
     app.post('/student_appraisal_login', function(req, res) {
         var appraisalHelper;
-        console.log("Request is ",req);
+        console.log("Request is ",req.body);
         appraisalHelper = require('../database/student_appraisal');
         if (req.body.usn) {
             appraisalHelper(req.body.usn, function(sem) {
