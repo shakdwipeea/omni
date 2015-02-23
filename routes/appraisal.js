@@ -3,6 +3,7 @@
  */
 
 var appraisalApi = function(app) {
+
     app.post('/student_appraisal_login', function(req, res) {
         var appraisalHelper;
         console.log("Request is ",req.body);
@@ -33,6 +34,12 @@ var appraisalApi = function(app) {
 
     app.get('/get_appraisal_questions', function  (req,res) {
          getQuestionHelper = require('../database/appraisal_questions')(res);
+    });
+
+    app.post('/feedback', function (req, res) {
+        require('../database/submit_appraisal')(req.body, function (done) {
+            res.json(done);
+        });
     });
 };
 

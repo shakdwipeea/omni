@@ -3,9 +3,12 @@
  */
 angular.module('omni')
     .controller('AppraisalController', function ($scope,$http,AppraisalFactory) {
-    	$scope.questions = [];
-    	var theoryQuestions = [];
-    	var labQuestions = [];
+        $scope.questions = [];
+
+        $scope.result = false;
+
+    	var theoryQuestions = [],
+            labQuestions = [];
 
     	$scope.active = {
     		id:0,
@@ -33,47 +36,68 @@ angular.module('omni')
     				theoryQuestions.push(questions[i]);
     			}
 
-    		};
+                questions[i].answer = '';
+
+    		}
 
     		console.log("Theory Questions",theoryQuestions);
     		console.log("lab Questions",labQuestions);
 
-    		updateQuestions(ids[0]);
+    		updateQuestions(ids[0]);   	
+        })
 
-    		$scope.loadQuestion = function  (key) {
-    			// body...
-    			console.log("key is ", key);
+    function updateQuestions(key) {
+        // body...
+        $scope.active = {
+            id: key,
+            teacher: $scope.teachers[key]
+        }
+        
+        console.log("Active questions ", $scope.active.id);
+        console.log("Active questions type", $scope.active.teacher.type);
+        
+        if ($scope.active.teacher.type === 'l') {
+            $scope.questions = labQuestions;
+        } 
+        else if ($scope.active.teacher.type === 't') {
+            $scope.questions = theoryQuestions;
+        }
+        
+        console.log("Questions ", $scope.questions);
 
-    			updateQuestions(key);
-    		}
+        $scope.questions.map(function (question) {
+            question.answer = '';
+        });
+    }
 
-    		function updateQuestions (key) {
-    			// body...
-    			$scope.active = {
-		    		id: key,
-		    		teacher: $scope.teachers[key]
-    			}
+    $scope.loadQuestion = function (key) {
+        // body...
+        console.log("key is ", key);
+        
+        updateQuestions(key);
+    }
 
-    		console.log("Active questions ",$scope.active.id);
-    		console.log("Active questions type",$scope.active.teacher.type);
-    		
-    		if ($scope.active.teacher.type === 'l') {
-    			$scope.questions = labQuestions;
-    		} 
-    		else if ($scope.active.teacher.type === 't') {
-    			$scope.questions = theoryQuestions;
-    		}
+    $scope.submit = function () {
 
-    		console.log("Questions ", $scope.questions);
-    		}
+        _.extend($scope.teachers[$scope.active.id] , {
+            questions: $scope.questions,
+            done: true
+        });
 
-    	
-    	})
+    };
 
+    $scope.finalSubmit = function () {
+        console.log("Final Submit")
+        AppraisalFactory.submit($scope.teachers)
+            .then(function (response) {
 
-    	
+                if (response.data.done === true)
+                {
+                    $scope.result = true;
+                }
+            }, function (reason) {
+                console.log('Error occurred', reason);
+            });
+    };
 
-    	
-
-    	
-    });
+});
