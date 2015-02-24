@@ -1,12 +1,14 @@
 
-  module.exports = function(usn, callback) {
-    var checkingUsn, conn, connection, mysql, query;
+module.exports = function(usn, callback) {
+    var checkingUsn, conn, connection, mysql, query, _;
 
     var _questions = [];
 
     var data = {
-      teacher_ids:[]
+        teacher_ids:[]
     };
+
+    _ = require('underscore');
 
     mysql = require('mysql');
 
@@ -15,7 +17,7 @@
     connection = mysql.createConnection(conn);
 
     query = "select first_name, middle_name, last_name , class_id, semester from student_details where usn = ?";
-    
+
     query = mysql.format(query, [usn]);
 
     console.log("Query us ",query);
@@ -23,226 +25,231 @@
         var sem;
         console.log("Rows are",rows[0]);
         if (err) {
-          return callback(null);
+            return callback(null);
         } else if (!rows[0]) {
-          return callback('No such Usn');
+            return callback('No such Usn');
         } else {
-          //console.log();
-          sem = rows[0].semester;
-          _getCompound(sem,usn);
-          //_getQuestions('t');
-         // _getQuestions('l');
+            //console.log();
+            sem = rows[0].semester;
+            _getCompound(sem,usn);
+            //_getQuestions('t');
+            // _getQuestions('l');
         }
     });
 
     function  _getCompound(sem,usn) {
-      // body...
-      var query = "select class_id, subject_1, subject_2, subject_3 subject_4, subject_5, subject_6, subject_7, subject_8, class_elective_id_1, class_elective_id_2, class_elective_id_3 , class_lab_id_1, class_lab_id_2, class_lab_id_3  from cse_" + sem + "_sem WHERE usn = ?";
+        // body...
+        var query = "select class_id, subject_1, subject_2, subject_3 subject_4, subject_5, subject_6, subject_7, subject_8, class_elective_id_1, class_elective_id_2, class_elective_id_3 , class_lab_id_1, class_lab_id_2, class_lab_id_3  from cse_" + sem + "_sem WHERE usn = ?";
 
-      query = mysql.format(query,[usn]);
+        query = mysql.format(query,[usn]);
 
-      console.log("Query i comp is ",query);
+        console.log("Query i comp is ",query);
 
-      connection.query(query, function  (err,rows) {
-        if (err || !rows) {
-          console.log('Error is in getCompuoung=',err);
-        } 
-        else {
-          compoundKeys = [];
-          console.log("Rows are ", rows);
-          compoundKeys = _getCompoundKeys(rows[0]);
-          console.log("Compound Keys are ", compoundKeys);
+        connection.query(query, function  (err,rows) {
+            if (err || !rows) {
+                console.log('Error is in getCompuoung=',err);
+            }
+            else {
+                compoundKeys = [];
+                console.log("Rows are ", rows);
+                compoundKeys = _getCompoundKeys(rows[0]);
+                console.log("Compound Keys are ", compoundKeys);
 
-          if (compoundKeys.length === 0 || compoundKeys.length < 0) {
-            callback("No Subjects found");
-          } 
+                if (compoundKeys.length === 0 || compoundKeys.length < 0) {
+                    callback("No Subjects found");
+                }
 
-          else {
-           // callback("hello");
-           var idsReturned = [];
-           
-           for (var i = 0; i < compoundKeys.length; i++) {
-             _getQuestionAndTeacher(compoundKeys[i], function  (id,rows) {
+                else {
+                    // callback("hello");
+                    var idsReturned = [];
 
-              if (id === "error") {
-                console.log("Error in for loop in clback ");
-                callback('error');
-              }
+                    for (var i = 0; i < compoundKeys.length; i++) {
+                        _getQuestionAndTeacher(compoundKeys[i], function  (id,rows) {
 
-              else {
+                            if (id === "error") {
+                                console.log("Error in for loop in clback ");
+                                callback('error');
+                            }
 
-               idsReturned.push(id);
-               if (idsReturned.length === compoundKeys.length) {
+                            else {
 
-                console.log("Teacher_ids are ",data.teacher_ids);
+                                idsReturned.push(id);
+                                if (idsReturned.length === compoundKeys.length) {
 
-                //data.appraisal_val = row['appraisal_val'];
-                //todo: add support for appraisal val use data.compound_key Good Luck!
+                                    console.log("Teacher_ids are ",data.teacher_ids);
 
-              
-
-                for (var i = 0; i < data.teacher_ids.length; i++) {
-
-                    _getTeacherDetails(data.teacher_ids[i],callback);
-                };
+                                    //data.appraisal_val = row['appraisal_val'];
+                                    //todo: add support for appraisal val use data.compound_key Good Luck!
 
 
-                  //callback('Done i guess');
-               }
 
-             }
-             });
-           };
+                                    for (var i = 0; i < data.teacher_ids.length; i++) {
 
-          }
+                                        _getTeacherDetails(data.teacher_ids[i],callback);
+                                    };
 
-          
-        }
-      });
+
+                                    //callback('Done i guess');
+                                }
+
+                            }
+                        });
+                    };
+
+                }
+
+
+            }
+        });
     }
 
     function _getCompoundKeys (row) {
-      var compoundKeys = [];
+        var compoundKeys = [];
 
-      for (var i = 1; i < 9; i++) {
-        if (row['subject_' + i]) {
-          compoundKeys.push(row.class_id + '_' + row['subject_' + i]);
+        for (var i = 1; i < 9; i++) {
+            if (row['subject_' + i]) {
+                compoundKeys.push(row.class_id + '_' + row['subject_' + i]);
+            }
         }
-      }
 
         for (var i = 1; i < 4; i++) {
-          if (row['class_elective_id_' + i]) {
-            compoundKeys.push(row.class_id + row['class_elective_id_' + i]);
-          }
+            if (row['class_elective_id_' + i]) {
+                compoundKeys.push(row.class_id + row['class_elective_id_' + i]);
+            }
 
-          if (row['class_lab_id_' + i]) {
-            compoundKeys.push(row['class_lab_id_' + i]);
-          }
+            if (row['class_lab_id_' + i]) {
+                compoundKeys.push(row['class_lab_id_' + i]);
+            }
 
         }
 
         return compoundKeys;
 
-      };
+    };
 
- var count = 0;
+    var count = 0;
 
-      function _getQuestionAndTeacher (compoundKey,clbk) {
+    function _getQuestionAndTeacher (compoundKey,clbk) {
         // body.
-        var query = "Select teacher_1, teacher_2, teacher_3, type, appraisal_teacher_1_1, appraisal_teacher_1_2, appraisal_teacher_2_1, appraisal_teacher_2_2, appraisal_teacher_3_1, appraisal_teacher_3_2,type from map_table where compound_key=?";
+        var query = "Select teacher_id_1, teacher_id_2, teacher_id_3, type, appraisal_teacher_1, appraisal_teacher_2, appraisal_teacher_3,type from map_table where compound_key=?";
 
         query = mysql.format(query,[compoundKey]);
 
         //console.log("Query in _getQuestionAndTeacher is ",query);
 
         connection.query(query, function  (err,rows) {
-          if (err) {
-            console.log("error",err);
-            clbk("error");
-          }
-          else {
-            console.log("Query inside connection.query in _getQuestio...m is ",query);
-             console.log("Rows are in _getQuestion " ,rows);
-
-             if (rows.length <= 0) {
-              console.log("Np row");
-              clbk("No row");
-             }
-
+            if (err) {
+                console.log("error",err);
+                clbk("error");
+            }
             else {
+                console.log("Query inside connection.query in _getQuestio...m is ",query);
+                console.log("Rows are in _getQuestion " ,rows);
 
-               var row;
-               row = rows[0];
+                if (rows.length <= 0) {
+                    console.log("Np row");
+                    clbk("No row");
+                }
 
-               
+                else {
 
-                //data.teacher_ids = [];
-                //
-                
+                    var row;
+                    row = rows[0];
 
 
-             for (var i = 1; i < 4; i++) {
-                if (row['teacher_' + i]) {
-                  data.teacher_ids.push(row['teacher_'+ i]);
-                  data[row['teacher_' + i]] = {
-                    type:''
-                  };
-                } 
 
-                if (row['type']) {
-                  console.log("Ha ha row ",row['teacher_' + i]);
-                  if (row['teacher_' + i]) {
-                    
-                    console.log("Teacher id ",row['teacher_' + i]);
-                    data[row['teacher_' + i]].type = row['type'];
-                    console.log("Data is ",data);
-                  }
-                } 
-                 else {
-                  console.log("Type not found");
-                  clbk("error");
-                 }
-             }
+                    //data.teacher_ids = [];
+                    //
 
-             clbk(compoundKey);
 
-             ///All the teacher should be in array
 
-            /* console.log("Teacher_ids are ",data.teacher_ids);
+                    for (var i = 1; i < 4; i++) {
+                        if (row['teacher_id_' + i]) {
+                            data.teacher_ids.push(row['teacher_id_'+ i]);
+                            data[row['teacher_id_' + i]] = {
+                                type:'',
+                                app:'',
+                                usn: usn
+                            };
+                        }
 
-                //data.appraisal_val = row['appraisal_val'];
-                //todo: add support for appraisal val use data.compound_key Good Luck!
+                        if (row['type']) {
+                            console.log("Ha ha row ",row['teacher_id_' + i]);
+                            if (row['teacher_id_' + i]) {
 
-              
+                                console.log("Teacher id ",row['teacher_id_' + i]);
 
-                for (var i = 0; i < data.teacher_ids.length; i++) {
+                                data[row['teacher_id_' + i]].type = row['type'];
+                                data[row['teacher_id_' + i]].app = row['appraisal_teacher_' + i];
 
-                    _getTeacherDetails(data.teacher_ids[i], compoundKey,clbk);
-                };
-*/
-              }
+                                console.log("Data is ",data);
+                            }
+                        }
+                        else {
+                            console.log("Type not found");
+                            clbk("error");
+                        }
+                    }
 
-             }
+                    clbk(compoundKey);
+
+                    ///All the teacher should be in array
+
+                    /* console.log("Teacher_ids are ",data.teacher_ids);
+
+                     //data.appraisal_val = row['appraisal_val'];
+                     //todo: add support for appraisal val use data.compound_key Good Luck!
+
+
+
+                     for (var i = 0; i < data.teacher_ids.length; i++) {
+
+                     _getTeacherDetails(data.teacher_ids[i], compoundKey,clbk);
+                     };
+                     */
+                }
+
+            }
         });
-      }
+    }
 
 
 
-      function  _getTeacherDetails(teacherId,callback) {
+    function  _getTeacherDetails(teacherId,callback) {
         // body...
         var q = "select first_name, middle_name, last_name, staff_initial from teacher_details where teacher_id = ?"
 
-                q = mysql.format(q,[teacherId]);
+        q = mysql.format(q,[teacherId]);
 
-                console.log("Query is in ??? ",q);
+        console.log("Query is in ??? ",q);
 
-                var k = connection.query(q, function  (err,rows) {
-                  if (err) {
-                    console.log("Error", err);
-                    clbk("error", null);
-                  } 
-                  else {
-                    console.log("Rows in this query is ", rows);
-                    //clbk(tableName,data);
-                    console.log("Teacher id is ", teacherId);
-                    data[teacherId]['details'] = rows[0];
-                  }
-                });
+        var k = connection.query(q, function  (err,rows) {
+            if (err) {
+                console.log("Error", err);
+                clbk("error", null);
+            }
+            else {
+                console.log("Rows in this query is ", rows);
+                //clbk(tableName,data);
+                console.log("Teacher id is ", teacherId);
+                data[teacherId]['details'] = rows[0];
+            }
+        });
 
-                k.on('end', function  () {
-                  count++;
-                  console.log("Hi!");
-                  if (count === data.teacher_ids.length)  {
-                    ///DOne with all queries 
-                    console.log("Data is ", data);
-                    callback(data);
-                  };
-                })
-      }
-  
-
-  
+        k.on('end', function  () {
+            count++;
+            console.log("Hi!");
+            if (count === data.teacher_ids.length)  {
+                ///DOne with all queries
+                console.log("Data is ", data);
+                callback(data);
+            };
+        })
+    }
 
 
-  };
+
+
+
+};
 
