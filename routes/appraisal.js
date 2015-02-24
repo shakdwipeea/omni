@@ -42,6 +42,22 @@ var appraisalApi = function(app) {
             res.json(done);
         });
     });
+
+    app.post('/staff_login', function (req, res) {
+        var staffHelper = require('../database/staff_appraisal');
+        if(req.body.id && req.body.password)
+        {
+            staffHelper(req.body.id ,req.body.password, function (data) {
+                res.json(data);
+            });
+        }
+        else
+        {
+            res.json({
+                error: true
+            });
+        }
+    });
 };
 
 module.exports = appraisalApi;

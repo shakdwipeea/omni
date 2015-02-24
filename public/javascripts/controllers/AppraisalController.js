@@ -91,7 +91,6 @@ angular.module('omni')
                 if(response.data === 'true')
                 {
                     $scope.result = true;
-                    console.log('Hereh');
                 }
             }, function (reason) {
                 console.log('An Error occured');
