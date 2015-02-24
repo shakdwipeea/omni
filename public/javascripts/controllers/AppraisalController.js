@@ -68,6 +68,8 @@ angular.module('omni')
         $scope.questions.map(function (question) {
             question.answer = '';
         });
+
+        $scope.result = false;
     }
 
     $scope.loadQuestion = function (key) {
@@ -84,6 +86,16 @@ angular.module('omni')
             done: true
         });
 
+        AppraisalFactory.submit($scope.teachers[$scope.active.id])
+            .then(function (response) {
+                if(response.data === 'true')
+                {
+                    $scope.result = true;
+                    console.log('Hereh');
+                }
+            }, function (reason) {
+                console.log('An Error occured');
+            });
     };
 
     $scope.finalSubmit = function () {
@@ -91,7 +103,7 @@ angular.module('omni')
         AppraisalFactory.submit($scope.teachers)
             .then(function (response) {
 
-                if (response.data.done === true)
+                if (response.data === true)
                 {
                     $scope.result = true;
                 }

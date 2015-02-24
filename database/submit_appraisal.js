@@ -14,19 +14,19 @@ module.exports = function (data, callback) {
 
     //var query = " "
 
-    var count = 0, error = false;
+    var error = false;
 
-    _.each(data, function (sub, index) {
+    //_.each(data, function (sub, index) {
 
-        if(sub.questions) {
+        if(data.questions) {
 
-            var answers = _.map(sub.questions, function (question) {
+            var answers = _.map(data.questions, function (question) {
                 return question.answer;
             });
 
             var query;
 
-            if(sub.type === 't')
+            if(data.type === 't')
             {
                 query = "UPDATE ?? SET q1_1 = ? , q2_1 = ? , q3_1 = ?, q4_1 = ?, q5_1 = ?, q6_1 = ?,q7_1 = ?, q8_1 = ?, q9_1 = ?, q10_1 = ?, q11_1 = ?,q12_1 = ?, q13_1 = ?, q14_1 = ?, q15_1 = ?  WHERE usn = ?"
             } else {
@@ -35,7 +35,7 @@ module.exports = function (data, callback) {
 
             //todo improve this for second appraisal
 
-            query = mysql.format(query, _.flatten([sub.app, answers , sub.usn]));
+            query = mysql.format(query, _.flatten([data.app, answers , data.usn]));
 
             connection.query(query, function (err, rows) {
                 if (err) {
@@ -44,19 +44,15 @@ module.exports = function (data, callback) {
                 }
 
                 else {
+                    done = true;
+                    callback(done);
 
-                    count++;
-
-                    if (count === _.size(data)) {
-                        done = true;
-                        callback(done);
-                    }
                 }
             });
 
 
         }
-    });
+   // });
 
 
 };

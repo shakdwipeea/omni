@@ -33,6 +33,7 @@ var appraisalApi = function(app) {
     });
 
     app.get('/get_appraisal_questions', function  (req,res) {
+         var getQuestionHelper;
          getQuestionHelper = require('../database/appraisal_questions')(res);
     });
 
