@@ -1,14 +1,12 @@
 
   module.exports = function(usn, callback) {
-    var checkingUsn, conn, connection, mysql, query, _;
+    var checkingUsn, conn, connection, mysql, query;
 
     var _questions = [];
 
     var data = {
       teacher_ids:[]
     };
-
-    _ = require('underscore');
 
     mysql = require('mysql');
 
@@ -131,7 +129,7 @@
 
       function _getQuestionAndTeacher (compoundKey,clbk) {
         // body.
-        var query = "Select teacher_id_1, teacher_id_2, teacher_id_3, type, appraisal_teacher_1, appraisal_teacher_2, appraisal_teacher_3,type from map_table where compound_key=?";
+        var query = "Select teacher_1, teacher_2, teacher_3, type, appraisal_teacher_1_1, appraisal_teacher_1_2, appraisal_teacher_2_1, appraisal_teacher_2_2, appraisal_teacher_3_1, appraisal_teacher_3_2,type from map_table where compound_key=?";
 
         query = mysql.format(query,[compoundKey]);
 
@@ -164,24 +162,19 @@
 
 
              for (var i = 1; i < 4; i++) {
-                if (row['teacher_id_' + i]) {
-                  data.teacher_ids.push(row['teacher_id_'+ i]);
-                  data[row['teacher_id_' + i]] = {
-                    type:'',
-                    app:'',
-                    usn: usn
+                if (row['teacher_' + i]) {
+                  data.teacher_ids.push(row['teacher_'+ i]);
+                  data[row['teacher_' + i]] = {
+                    type:''
                   };
                 } 
 
                 if (row['type']) {
-                  console.log("Ha ha row ",row['teacher_id_' + i]);
-                  if (row['teacher_id_' + i]) {
+                  console.log("Ha ha row ",row['teacher_' + i]);
+                  if (row['teacher_' + i]) {
                     
-                    console.log("Teacher id ",row['teacher_id_' + i]);
-
-                    data[row['teacher_id_' + i]].type = row['type'];
-                    data[row['teacher_id_' + i]].app = row['appraisal_teacher_' + i];
-
+                    console.log("Teacher id ",row['teacher_' + i]);
+                    data[row['teacher_' + i]].type = row['type'];
                     console.log("Data is ",data);
                   }
                 } 
