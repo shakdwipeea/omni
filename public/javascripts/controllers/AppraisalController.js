@@ -4,7 +4,7 @@
 angular.module('omni')
     .controller('AppraisalController', function ($scope,$http,AppraisalFactory) {
         $scope.questions = [];
-
+        $scope.alert_hide = true;
         $scope.result = false;
 
     	var theoryQuestions = [],
@@ -43,7 +43,7 @@ angular.module('omni')
     		console.log("Theory Questions",theoryQuestions);
     		console.log("lab Questions",labQuestions);
 
-    		updateQuestions(ids[0]);   	
+    		updateQuestions(ids[1]);   	
         })
 
     function updateQuestions(key) {
@@ -90,7 +90,11 @@ angular.module('omni')
             .then(function (response) {
                 if(response.data === 'true')
                 {
+                    
+                    console.log("Submitted");
+                    $scope.alert_hide = false;
                     $scope.result = true;
+                   // console.log("Working---Jayanth")
                 }
             }, function (reason) {
                 console.log('An Error occured');

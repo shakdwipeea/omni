@@ -15,15 +15,15 @@
 		<div class="row content">
 			<div class="col-lg-4 col-sm-4">
 				<h3> Faculty </h3>
-				<div class="list-group" ng-repeat="(key,value) in teachers">
-				  <a ng-click="loadQuestion(key)" class="list-group-item">
+				<div class="list-group">
+				  <a ng-click="loadQuestion(key)" class="list-group-item {{active.id == key ? 'active': ''}}" ng-repeat="(key,value) in teachers">
 				  	<div class="row">
 						<div class="col-md-9">
 							<h4 class="list-group-item-heading">{{value.details.first_name}}</h4>
 				    		<p class="list-group-item-text">{{key}}</p>
 						</div>
-						<div class="col-md-3">
-							<span id="q1_badge" class="badge badge-active badge-disabled">DONE</span>
+						<div class="col-md-3 hidden">
+							<span id="q1_badge" class="badge badge-active">DONE</span>
 						</div>
 				  	</div>
 
@@ -35,7 +35,7 @@
 			<div class="col-lg-8 col-sm-8">
 				<h3> Enter Feedback</h3>
 
-				<div class="alert alert-success alert-dismissible" role="alert">
+				<div class="alert alert-success alert-dismissible" role="alert" ng-hide="alert_hide">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  You've successfully submitted feedback for <strong>Nivya Muchikel</strong>
 				</div><!-- /alert -->
