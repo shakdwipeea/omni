@@ -52,7 +52,7 @@ module.exports = function (id , password, callback) {
             }
 
             _.map(classes, function (clas) {
-                getSubjectDetails(clas);
+                getSubjectDetails(clas, id);
             });
 
         }
@@ -66,23 +66,30 @@ module.exports = function (id , password, callback) {
         callback(data);
     });
 
-     function getSubjectDetails(clas)
+     function getSubjectDetails(clas, id)
      {
          var subCode = clas.table;
+         var subCodeQuery;
 
          if(subCode.substr(-1,1) === 'l')
          {
              //Lab Class
-             subCode = subCode.slice(10,-1);
+             subCodeQuery = subCode.slice(10,-1);
+             _.extend(clas,{
+                 type: 'lab'
+             });
          }
          else
          {
              //Theory Class
-             subCode = subCode.slice(8);
+             subCodeQuery = subCode.slice(8);
+             _.extend(clas,{
+                 type: 'theory'
+             });
          }
 
          var query = 'SELECT * FROM subject_name WHERE subject_code = ?';
-         query = mysql.format(query, [subCode]);
+         query = mysql.format(query, [subCodeQuery]);
 
          connection.query(query, function (err, rows) {
              if(err)
@@ -93,19 +100,42 @@ module.exports = function (id , password, callback) {
              else
              {
                  _.extend(clas, rows[0]);
-                 data.result = classes;
              }
 
              countDone++;
 
-             if(countDone === count)
-             {
-                 eventEmitter.emit('done');
-             }
+            done();
          });
 
+         var query2 = "select distinct count(usn) as total, sum(appraisal_complete_1) as appraised from ??";
+         query2 = mysql.format(query2,['appraisal_' + clas.table + '_' + id]);
+
+         connection.query(query2, function (err, rows) {
+             if(err)
+             {
+                 data.error = err;
+                 eventEmitter.emit('done');
+             }
+             else
+             {
+                 _.extend(clas, rows[0]);
+                 countDone++;
+             }
+
+             done();
+
+         })
 
      }
+
+    function done ()
+    {
+        if(countDone === 2 * count)
+        {
+            data.result = classes;
+            eventEmitter.emit('done');
+        }
+    }
 
 }
 
