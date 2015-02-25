@@ -24,6 +24,10 @@ body {
 	color: #FFF;
 }
 
+.navbar {
+    border-width: 0;
+    border-radius: 0;
+}
 .navbar-default .navbar-link {
 	color: #FFF;
 }
@@ -159,9 +163,15 @@ h2 {
 	padding-right: 0;
 }
 
+.list-group-item {
+    cursor: pointer;
+}
+
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
 	/*background-color: #db4437;*/
 	/*border-color: #db4437;*/
+
+    /*cursor: hand;*/
 }
 
 .list-group-item.active .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text {
@@ -218,6 +228,15 @@ ol.questions > li {
 	width: 170px;
 }
 
+.progress {
+    height: 5px;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.progress-bar {
+    background-color: rgb(131, 203, 89);
+}
 @media (max-width: 768px) {
 	.container {
 		width: 90%;

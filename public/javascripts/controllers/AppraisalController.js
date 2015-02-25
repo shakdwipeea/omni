@@ -24,6 +24,10 @@ angular.module('omni')
 
     	console.log($scope.teachers);
 
+        $scope.totalAppraisal = _.size($scope.teachers);
+
+        $scope.givenAppraisal = 0;
+
     	AppraisalFactory.getQuestions()
     	.then(function  (questions) {
     		//$scope.questions = questions;
@@ -47,6 +51,7 @@ angular.module('omni')
         })
 
     function updateQuestions(key) {
+        $scope.alert_hide = true;
         // body...
         $scope.active = {
             id: key,
@@ -75,15 +80,23 @@ angular.module('omni')
     $scope.loadQuestion = function (key) {
         // body...
         console.log("key is ", key);
-        
-        updateQuestions(key);
+
+        if($scope.teachers[key].done)
+        {
+            return;
+        }
+        else {
+            updateQuestions(key);
+        }
     }
 
     $scope.submit = function () {
 
+
         _.extend($scope.teachers[$scope.active.id] , {
             questions: $scope.questions,
-            done: true
+            done: true,
+            completed: 'grey'
         });
 
         AppraisalFactory.submit($scope.teachers[$scope.active.id])
@@ -95,6 +108,7 @@ angular.module('omni')
                     $scope.alert_hide = false;
                     $scope.result = true;
                    // console.log("Working---Jayanth")
+                    $scope.givenAppraisal++;
                 }
             }, function (reason) {
                 console.log('An Error occured');
