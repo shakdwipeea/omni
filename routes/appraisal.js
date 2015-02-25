@@ -58,6 +58,28 @@ var appraisalApi = function(app) {
             });
         }
     });
+
+    app.post('/staff_report', function (req, res) {
+        var staffReport = require('../database/staff_report');
+
+        var damn = {};
+
+        damn.table = req.body.table;
+        damn.type = req.body.type;
+
+        if(damn)
+        {
+            staffReport(damn, function (data) {
+                res.json(data);
+            });
+        }
+        else
+        {
+            res.json({
+                error: true
+            });
+        }
+    })
 };
 
 module.exports = appraisalApi;

@@ -131,7 +131,7 @@ module.exports = function(usn, callback) {
 
     function _getQuestionAndTeacher (compoundKey,clbk) {
         // body.
-        var query = "Select teacher_id_1, teacher_id_2, teacher_id_3, type, appraisal_teacher_1, appraisal_teacher_2, appraisal_teacher_3,type from map_table where compound_key=?";
+        var query = "Select sub_name,sub_name_short,teacher_id_1, teacher_id_2, teacher_id_3, type, appraisal_teacher_1, appraisal_teacher_2, appraisal_teacher_3,type from map_table where compound_key=?";
 
         query = mysql.format(query,[compoundKey]);
 
@@ -169,7 +169,9 @@ module.exports = function(usn, callback) {
                             data[row['teacher_id_' + i]] = {
                                 type:'',
                                 app:'',
-                                usn: usn
+                                usn: usn,
+                                subName: row['sub_name'],
+                                subShortName: row['sub_name_short']
                             };
                         }
 

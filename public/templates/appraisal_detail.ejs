@@ -11,12 +11,17 @@
 	  </div>
 	</nav>
 
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (givenAppraisal/totalAppraisal * 100) + '%'}" >
+            </div>
+    </div>
+
 	<div class="container">
 		<div class="row content">
 			<div class="col-lg-4 col-sm-4">
 				<h3> Faculty </h3>
 				<div class="list-group">
-				  <a ng-click="loadQuestion(key)" class="list-group-item {{active.id == key ? 'active': ''}}" ng-repeat="(key,value) in teachers">
+				  <a ng-click="loadQuestion(key)" class="list-group-item {{active.id == key ? 'active': ''}}" ng-repeat="(key,value) in teachers" ng-style="{'background-color': value.completed}">
 				  	<div class="row">
 						<div class="col-md-9">
 							<h4 class="list-group-item-heading">{{value.details.first_name}}</h4>
@@ -29,18 +34,18 @@
 
 				  </a>
 				</div>
-
-				<button type="button" ng-click="finalSubmit()" class="btn btn-default btn-final btn-lg">Submit</button>
 			</div>
 			<div class="col-lg-8 col-sm-8">
 				<h3> Enter Feedback</h3>
 
+
 				<div class="alert alert-success alert-dismissible" role="alert" ng-hide="alert_hide">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				  You've successfully submitted feedback for <strong>Nivya Muchikel</strong>
+				  You've successfully submitted feedback for <strong>{{active.teacher.details.first_name}}</strong>
 				</div><!-- /alert -->
 
-				<div class="panel panel-default">
+                <div ng-hide="!alert_hide">
+				<div class="panel panel-default" >
 				  <div class="panel-heading">Basic Information</div>
 				  <div class="panel-body">
 				  	<table class="table borderless zero-padding">
@@ -51,7 +56,7 @@
 					  		</tr>				  		
 					  		<tr>
 					  			<td> <h4> Subject: </h4></td>
-					  			<td> <h4> <strong>Applied Mathematics - 4</strong> </h4></td>
+					  			<td> <h4> <strong>{{active.teacher.subName}}</strong> </h4></td>
 					  		</tr>				  		
 					  		<tr>
 					  			<td> <h4>Code: </h4></td>
@@ -88,6 +93,8 @@
 						<button ng-click="submit()" type="submit" class="btn btn-primary btn-submit btn-lg">Submit</button>			
 					</div>
 				</div>
+
+                </div>
 
 			</div>
 		</div>
