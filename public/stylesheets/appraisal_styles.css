@@ -7,6 +7,10 @@ body {
 	color: #000;
 	padding-top: 0;
 }
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+	width: auto;
+}
+
 
 .navbar-default {
 	background-color: #4285f4;
@@ -130,6 +134,11 @@ body {
 	width: 300px;
 }
 
+.size-small {
+	width: 50%;
+	margin: 0 auto;
+}
+
 h2 {
 	font-size: 2.5em;
 	font-weight: 400;
@@ -142,6 +151,7 @@ h2 {
 	border-bottom: 2px solid #cfd4d9;
 	border-radius: 0.2rem;
 	margin-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .no-padding {
@@ -210,6 +220,10 @@ ol.questions > li {
 
 @media (max-width: 768px) {
 	.container {
+		width: 90%;
+	}
+
+	.size-small {
 		width: 90%;
 	}
 
