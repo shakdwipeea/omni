@@ -11,7 +11,9 @@ angular.module('omni')
 
         $scope.scores = [];
 
-        if (!$window.sessionStorage.teacher_id) {
+         $scope.details=StaffAppraisalFactory.getStaffData();
+
+        if (!$window.sessionStorage.teacher_id || !$scope.details) {
 
             delete $window.sessionStorage.teacher_id;
             delete $window.sessionStorage.table;
@@ -22,7 +24,7 @@ angular.module('omni')
         };
 
 
-        $scope.subject = $window.sessionStorage.current.sub;
+        $scope.subject = $window.sessionStorage.sub;
 
         var sync = 0;
         var question = [];
@@ -96,7 +98,7 @@ angular.module('omni')
             sync_now();
         });
         
-        $scope.details=StaffAppraisalFactory.getStaffData();
+       
         console.log($scope.details.data);
         
         $scope.stype = type;
