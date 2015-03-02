@@ -8,8 +8,6 @@
 
             </a>
         </div>
-        <a ui-sref = "staff_csv"><p class="navbar-text navbar-right navbar-link">Add Class</p></a>
-
         <a ng-click="logout()"><p class="navbar-text navbar-right navbar-link">Logout</p></a>
     </div>
 </nav>
@@ -28,11 +26,12 @@
 
                 </div>
                 <div class="panel-body">
-                    <h4>Class: <strong>{{ d.clas }}</strong></h4>
+                    <h4>Class: <strong>{{ d.code }}</strong></h4>
                     <h4>Student Strength: <strong>{{ d.total }}</strong>
                         <h4>Students Appraised: <strong>{{ d.appraised }}</strong>
                             <br><br>
-                            <button ng-click="view()" class="btn btn-primary" role="button" ui-sref="staff_report">View Apprisal</button>
+                            
+                            <button class="btn btn-primary" role="button" ui-sref="staff_report" value="{{$index}}" >View Apprisal</button>
                 </div>
             </div>
         </div>

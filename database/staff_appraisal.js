@@ -63,6 +63,7 @@ module.exports = function (id , password, callback) {
     });
 
     eventEmitter.on('done', function () {
+        console.log(data);
         callback(data);
     });
 
@@ -71,7 +72,8 @@ module.exports = function (id , password, callback) {
          var subCode = clas.table;
          var subCodeQuery;
 
-         if(subCode.substr(-1,1) === 'l')
+
+         if(subCode.slice(-3,-2) === 'l')
          {
              //Lab Class
              subCodeQuery = subCode.slice(10,-1);
