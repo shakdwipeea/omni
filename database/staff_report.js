@@ -12,6 +12,8 @@ module.exports = function (damn, callback) {
         error: true
     }
 
+    console.log('table is', damn.table);
+
     //todo proper slice
     var semester = damn.table.slice(4,5);
 
@@ -21,13 +23,17 @@ module.exports = function (damn, callback) {
 
     query = mysql.format(query,[semester]);
 
+    console.log(query);
+
     var q = connection.query(query, function (err, rows) {
         if(err)
         {
+            console.log(err);
             callback(data);
         }
         else
         {
+
             count = rows[0].appraisal_count;
 
             if(damn.type === 'theory')
@@ -62,6 +68,7 @@ module.exports = function (damn, callback) {
             connection.query(query, function (err, rows) {
                 if(err)
                 {
+                    console.log('Error in staff_report',err);
                     callback(data);
                 }
                 else

@@ -1,7 +1,7 @@
 angular.module('omni',['ui.router'])
 
 .config(function($stateProvider,$urlRouterProvider,$httpProvider) {
-	$urlRouterProvider.otherwise('/home');
+	$urlRouterProvider.otherwise('/student_login');
 
 	$stateProvider
 		.state('home',{

@@ -18,14 +18,14 @@
             <div class="col-xs-6">
                 <h3>Name: <strong>{{ teacher }}</strong></h3>
                 <h3>Dept: <strong>{{ department }}</strong></h3>
-                <h3>Subject: <strong>{{ subjectname }}</strong> [{{ subjectcode}}] </h3>
+                <h3>Subject: <strong>{{ subjectname }}</strong> </h3>
                 <h3>No. of students: <strong>{{  total }}</strong></h3>
             </div>
             <div class="col-xs-6">
                 <h3>Designation: <strong>{{ designation }}</strong></h3>
                 <h3>Semester: <strong>4</strong></h3>
                 <h3>Class(Section): <strong>C</strong></h3>
-                <h3>No of students who have appraised: <strong>{{  appraised }}</strong></h3>
+                <h3>No of students who have appraised: <strong>{{ done }}</strong></h3>
             </div>
             
         </div>
@@ -40,14 +40,14 @@
               </tr>
            </thead>
            <tbody>
-              <tr  ng-repeat="d in question">
+              <tr  ng-repeat="(key,value) in question">
                  <td class="col-md-1">{{ $index+1 }}</td> 
                  <td class="col-md-9">
-                    {{d.q_text}}
+                    {{key}}
                  </td>
                  
-                 <td class="col-md-1">32</td>
-                 <td class="col-md-1">12</td>
+                 <td class="col-md-1">{{value}}</td>
+                 <td class="col-md-1">{{value/10 * 100}}</td>
               </tr>
 
              

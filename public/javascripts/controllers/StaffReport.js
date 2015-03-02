@@ -1,41 +1,121 @@
 
 angular.module('omni')
     
-    .controller('StaffReport',function($scope,$http,StaffAppraisalFactory,$state, $stateParams){
+    .controller('StaffReport',function($scope,$window,$http,StaffAppraisalFactory,$state, $stateParams){
         $scope.lab=[];
         $scope.theory=[];
         $scope.quest=[];
-         $http.get('/get_appraisal_questions').success(function(data){ $scope.question=data;
-        // console.log($scope.question); 
-        for(var i=0;i<$scope.question.length;i++){
-            if($scope.question[i].q_type=='l')
-                $scope.lab.push($scope.question[i]);
-            else
-                    $scope.theory.push($scope.question[i])
+
+        $scope.total = 0;
+        $scope.appraised = 0;
+
+        $scope.scores = [];
+
+        if (!$window.sessionStorage.teacher_id) {
+
+            delete $window.sessionStorage.teacher_id;
+            delete $window.sessionStorage.table;
+            delete $window.sessionStorage.sub;
+
+            $state.go('staff_appraisal_login');
+            return;
+        };
+
+
+        $scope.subject = $window.sessionStorage.current.sub;
+
+        var sync = 0;
+        var question = [];
+        var scores = [];
+
+        var type = '';
+
+
+        if ($window.sessionStorage.table.slice(-3,-2) === 'l') 
+        {
+            type = 'lab';
+        } 
+        else 
+        {
+            type = 'theory';
         }
-    //  console.log($scope.lab);
+
+        
+        $http.get('/get_appraisal_questions').success(function(data){ 
+            sync++;
+
+            question = data;
+
+            console.log('Question newborn', question);
+        
+            for(var i=0; i < question.length; i++) 
+            {
+                if(question[i].q_type === 'l')
+                {
+                    $scope.lab.push(question[i].q_text);
+                }
+                else
+                {
+                    $scope.theory.push(question[i].q_text);
+                }
+            }
+
+            if (type === 'lab') 
+            {
+                question = $scope.lab;
+            }
+            else if (type === 'theory') 
+            {
+                question = $scope.theory;
+            };
+
+            sync_now();
+        
         });
+
+
+
+        $http.post('/staff_report',{
+
+            table: $window.sessionStorage.table + '_' + $window.sessionStorage.teacher_id,
+            type: type
+
+        }).success( function  (data) {
+
+            sync++;
+
+            console.log('Data in Staff Report cont. ', data)
+            $scope.total = data.total;
+            $scope.done = data.appraised;
+
+            delete data.total;
+            delete data.appraised;
+
+            scores = _.toArray(data);
+
+            sync_now();
+        });
+        
         $scope.details=StaffAppraisalFactory.getStaffData();
         console.log($scope.details.data);
-        $scope.stype=$scope.details.data.result[0].type;
+        
+        $scope.stype = type;
         console.log($scope.stype);
+        
         $scope.teacher=$scope.details.data[0].first_name;
         $scope.department=$scope.details.data[0].department;
         $scope.designation=$scope.details.data[0].designation;
-    
-        //Variable 
-        // $scope.subjectname=$scope.details.data.result[0].subject_name;
-        // $scope.subjectcode=$scope.details.data.result[0].subject_code;
-        // $scope.stype=$scope.details.data.result[0].type;
-        // $scope.appraised=$scope.details.data.result[0].appraised;
-        // $scope.total=$scope.details.data.result[0].total;
-      //    console.log($scope.subjectname);
-        
-    //      console.log($scope.details.data.result[0].table + '_' + $scope.details.data[0].teacher_id);
-                // $http.post('/staff_report', {
-                //          table: $scope.details.data.result[0].table + '_' + $scope.details.data[0].teacher_id,
-                //          type: 'theory'
-                // })
-                // .then(function(data){ console.log(data)}) ;
+
+        $scope.subjectname = $window.sessionStorage.sub;
+
+        function sync_now () {
+            if (sync === 2)
+            {
+                
+                console.log('scores', scores)
+                $scope.question = _.object(question, scores);
+                console.log('question', question);
+            };
+        }
         
     });

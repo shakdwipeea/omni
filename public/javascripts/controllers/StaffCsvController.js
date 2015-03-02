@@ -1,9 +1,25 @@
 angular.module('omni')
 .controller ('StaffCsvController', function  ($scope,$state,StaffAppraisalFactory,$window) {
+
+
+	
+        if (!$window.sessionStorage.teacher_id) {
+
+            delete $window.sessionStorage.teacher_id;
+            delete $window.sessionStorage.table;
+            delete $window.sessionStorage.sub;
+
+            $state.go('staff_appraisal_login');
+            return;
+        };
+
+
 	var _id = $window.sessionStorage.teacher_id;
 
 	console.log('a');
 	$scope.disable = true;
+
+
 
 	$scope.disableLab = function  () {
 		console.log($scope.sub_type);
@@ -45,6 +61,10 @@ angular.module('omni')
 
 	$scope.logout = function  () {
 		delete $window.sessionStorage.teacher_id;
+        delete $window.sessionStorage.table;
+        delete $window.sessionStorage.sub;
+
+
 		$state.go('staff_appraisal_login');
 	}
 

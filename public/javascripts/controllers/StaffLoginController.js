@@ -2,7 +2,10 @@
  * Created by akash on 22/1/15.
  */
 angular.module('omni')
-    .controller('StaffLoginController', function ($scope, StaffAppraisalFactory, $state) {
+    .controller('StaffLoginController', function ($scope, StaffAppraisalFactory, $state, $window) {
+
+        console.log($window.sessionStorage.teacher_id);
+
         $scope.loginStaff = function () {
             if ($scope.staff_user_id && $scope.staff_user_password )
             {

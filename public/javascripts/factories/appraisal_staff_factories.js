@@ -25,7 +25,10 @@ angular.module('omni')
             loginStaff: login ,
 
             getStaffData: function () {
-                return data;
+                if (data)
+                {
+                    return data;
+                }    
             },
 
             new_class: new_class
