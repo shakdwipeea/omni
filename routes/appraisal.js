@@ -18,6 +18,12 @@ var appraisalApi = function(app) {
                     });
                 }
 
+                else if (sem.err === true) {
+                    res.status(500).json({
+                        err: sem.msg
+                    });
+                }
+
                 else if (sem !== null) {
                     console.log(sem);
                     res.json(sem);
@@ -79,7 +85,29 @@ var appraisalApi = function(app) {
                 error: true
             });
         }
-    })
+    });
+
+	app.post('/new_class', function (req, res) {
+        console.log(req.body);
+
+        var newClass = require('../database/new_class');
+
+        if (!req.body.teacher_id) {
+            res.json({
+                err: 'Occured'
+            });
+        } else {
+
+            newClass(req.body, function  (data) {
+                // body...
+                res.json(data);
+            });
+        }
+
+        
+    });
+
+    
 };
 
 module.exports = appraisalApi;

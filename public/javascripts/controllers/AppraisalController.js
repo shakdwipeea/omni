@@ -20,6 +20,9 @@ angular.module('omni')
     	$scope.teachers = AppraisalFactory.teacherDetails().data;
 
     	var ids = $scope.teachers.teacher_ids;
+        var count = $scope.teachers.appraisal_count;
+
+        delete $scope.teachers.appraisal_count;;
     	delete $scope.teachers.teacher_ids;
 
     	console.log($scope.teachers);
@@ -32,11 +35,14 @@ angular.module('omni')
     	.then(function  (questions) {
     		//$scope.questions = questions;
     		console.log("Questions are",questions);
-    		for (var i = 0; i < questions.length; i++) {
-    			if(questions[i].q_type === 'l') {
+    		for (var i = 0; i < questions.length; i++) 
+            {
+    			if(questions[i].q_type === 'l') 
+                {
     				labQuestions.push(questions[i]);
     			} 
-    			else if (questions[i].q_type === 't') {
+    			else if (questions[i].q_type === 't')
+                {
     				theoryQuestions.push(questions[i]);
     			}
 
@@ -94,6 +100,7 @@ angular.module('omni')
 
 
         _.extend($scope.teachers[$scope.active.id] , {
+            appraisal_count: count,
             questions: $scope.questions,
             done: true,
             completed: 'grey'

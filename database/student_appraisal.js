@@ -24,14 +24,56 @@ module.exports = function(usn, callback) {
     var checkingUsn = connection.query(query, function(err, rows) {
         var sem;
         console.log("Rows are",rows[0]);
-        if (err) {
+        if (err) 
+        {
             return callback(null);
-        } else if (!rows[0]) {
+        } 
+        else if (!rows[0]) 
+        {
             return callback('No such Usn');
-        } else {
+        } 
+        else 
+        {
             //console.log();
             sem = rows[0].semester;
-            _getCompound(sem,usn);
+
+            query = "SELECT * FROM enable_table WHERE semester = ?";
+            query = mysql.format(query,[sem]);
+
+            var go = false;
+
+            var q = connection.query(query, function  (err, rows) {
+                if (err) 
+                {
+                    console.log(err);
+                    return callback({
+                        err: true,
+                        msg: 'Error in enable_table'
+                    });
+                }
+                else
+                {
+                    console.log('Line 46',rows[0]);
+                    if (rows[0].enable != 1) 
+                    {
+                       return callback({
+                            err:true,
+                            msg:'Not allowed'
+                       });
+                    } 
+                    else
+                    {
+                        go = true;
+                        data.appraisal_count = rows[0].appraisal_count;
+                    }
+                };
+            });
+
+            q.on('end', function  () {
+                if (go) {
+                    _getCompound(sem,usn);
+                }
+            });
             //_getQuestions('t');
             // _getQuestions('l');
         }
@@ -243,7 +285,7 @@ module.exports = function(usn, callback) {
             console.log("Hi!");
             if (count === data.teacher_ids.length)  {
                 ///DOne with all queries
-                console.log("Data is ", data);
+                //console.log("Data is ", data);
                 callback(data);
             };
         })
