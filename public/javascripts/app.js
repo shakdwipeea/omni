@@ -50,6 +50,10 @@ angular.module('omni',['ui.router'])
 			templateUrl:'/templates/staff_report.ejs',
                         controller : 'StaffReport'
 		})
+		.state('staff_csv',{
+			url:'/staff_csv',
+			templateUrl: '/templates/appraisal_staff_csv.ejs'
+		})
 		;
 
 
