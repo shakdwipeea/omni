@@ -107,6 +107,25 @@ var appraisalApi = function(app) {
         
     });
 
+    app.post('/change_password', function  (req, res) {
+
+        var changePassword = require('../database/change_password');
+
+        if (req.body) 
+        {
+            changePassword(req.body, function  (response) {
+                res.json(response);
+            })
+        } 
+        else 
+        {
+            res.json ({
+                err: true,
+                message: 'Blank Request'
+            });
+        }
+    })
+
     
 };
 

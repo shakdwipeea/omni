@@ -21,6 +21,10 @@ angular.module('omni')
             return $http.post('/new_class', data);
         }
 
+        var change_password = function  (data) {
+            return $http.post('/change_password', data);
+        }
+
         return {
             loginStaff: login ,
 
@@ -31,6 +35,8 @@ angular.module('omni')
                 }    
             },
 
-            new_class: new_class
+            new_class: new_class,
+
+            change_password: change_password
         };
     });
