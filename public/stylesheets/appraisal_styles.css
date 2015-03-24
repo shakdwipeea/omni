@@ -7,6 +7,10 @@ body {
 	color: #000;
 	padding-top: 0;
 }
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+	width: auto;
+}
+
 
 .navbar-default {
 	background-color: #4285f4;
@@ -20,6 +24,10 @@ body {
 	color: #FFF;
 }
 
+.navbar {
+    border-width: 0;
+    border-radius: 0;
+}
 .navbar-default .navbar-link {
 	color: #FFF;
 }
@@ -130,6 +138,11 @@ body {
 	width: 300px;
 }
 
+.size-small {
+	width: 50%;
+	margin: 0 auto;
+}
+
 h2 {
 	font-size: 2.5em;
 	font-weight: 400;
@@ -142,6 +155,7 @@ h2 {
 	border-bottom: 2px solid #cfd4d9;
 	border-radius: 0.2rem;
 	margin-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .no-padding {
@@ -149,9 +163,15 @@ h2 {
 	padding-right: 0;
 }
 
+.list-group-item {
+    cursor: pointer;
+}
+
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
 	/*background-color: #db4437;*/
 	/*border-color: #db4437;*/
+
+    /*cursor: hand;*/
 }
 
 .list-group-item.active .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text {
@@ -208,8 +228,21 @@ ol.questions > li {
 	width: 170px;
 }
 
+.progress {
+    height: 5px;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.progress-bar {
+    background-color: rgb(131, 203, 89);
+}
 @media (max-width: 768px) {
 	.container {
+		width: 90%;
+	}
+
+	.size-small {
 		width: 90%;
 	}
 
@@ -282,7 +315,7 @@ ol.questions > li {
 		padding-bottom: 5px;
 	}
 	.gap {
-		margin-top: 100px;
+		margin-top: 140px;
 	}
 
 	.table-report {

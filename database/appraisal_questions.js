@@ -14,7 +14,7 @@ module.exports = function  (res) {
 			});
 		} 
 		else {
-			console.log("Rows are",rows);
+			//console.log("Rows are",rows);
 			res.json(rows);
 		}
 	});

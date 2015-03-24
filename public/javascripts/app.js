@@ -1,7 +1,7 @@
 angular.module('omni',['ui.router'])
 
 .config(function($stateProvider,$urlRouterProvider,$httpProvider) {
-	$urlRouterProvider.otherwise('/home');
+	$urlRouterProvider.otherwise('/student_login');
 
 	$stateProvider
 		.state('home',{
@@ -42,11 +42,18 @@ angular.module('omni',['ui.router'])
 		})
 		.state('staff_appraisal_dashboard', {
 			url:'/staff_dashboard',
-			templateUrl:'/templates/appraisal_staff_dashboard.ejs'
+			templateUrl:'/templates/appraisal_staff_dashboard.ejs',
+            controller:'StaffDashboardController'
 		})
 		.state('staff_report',{
 			url:'/staff_report',
-			templateUrl:'/templates/staff_report.ejs'
+			templateUrl:'/templates/staff_report.ejs',
+            controller : 'StaffReport'
+		})
+		.state('staff_csv',{
+			url:'/staff_csv',
+			templateUrl: '/templates/appraisal_staff_csv.ejs',
+			controller: 'StaffCsvController'
 		})
 		;
 

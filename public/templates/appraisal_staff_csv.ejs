@@ -1,0 +1,73 @@
+	<nav class="navbar navbar-default">
+	  <div class="container container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <img alt="Brand" src="/images/faculty.png" class="logo">
+	        <a class="navbar-brand brand-text" href="#">Faculty Dashboard</a>
+
+
+	      </a>
+	    </div>
+	    <a ng-click="logout()"><p class="navbar-text navbar-right navbar-link">Logout</p></a>
+	  </div>
+	</nav>
+
+	<div class="container">
+		<div class="row content size-small">
+			<div class="col-lg-12">
+				<h1> Add Class </h1>
+				<div class="row">
+					<div class="col-md-6">
+						{{message}}
+						<label> Dept. </label>
+						  <select class="form-control" ng-model="dept" id="sec">
+						    <option>cse</option>
+						  </select>
+						
+					</div>
+					<div class="col-md-6">
+						<label> Semester. </label>
+						  <select class="form-control" ng-model="sem" id="sel1">
+						    <option>1</option>
+						    <option>2</option>
+						    <option>3</option>
+						    <option>4</option>
+						  </select>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<label> Section </label>
+						  <select class="form-control" id="sec" ng-model="sec">
+						    <option>a</option>
+						    <option>b</option>
+						    <option>c</option>
+						    <option>d</option>
+						  </select>					
+					</div>
+					<div class="col-md-6">
+						<label> Subject code </label>
+						<input type="text" ng-model="sub_code" class="form-control"> 
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<label> Subject Type </label><br>
+						  <select class="form-control" id="sel1" ng-change="disableLab()" ng-model='sub_type'>
+						    <option value="t">Theory</option>
+						    <option value="l">Lab</option>
+						  </select>							
+					</div>
+
+					<div class="col-md-6" >
+						<label>Batch No.</label>
+						<input ng-disabled="disable" type="text" ng-model='batch_no' class="form-control">
+					</div>
+				</div>
+				<br>
+				<input type="submit" ng-click="submit()" class="btn btn-primary">
+			</div>
+		</div>
+	</div>
