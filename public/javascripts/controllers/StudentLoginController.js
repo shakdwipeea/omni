@@ -8,6 +8,9 @@ angular.module('omni')
                 if (data) {
                     $state.go('student_appraisal_detail');
                 };
-            });
+            }, function (reason) {
+                    console.log('Reason', reason);
+                    alert(reason.data.err);
+                });
         }
     })

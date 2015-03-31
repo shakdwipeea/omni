@@ -77,16 +77,16 @@
 							<li ng-repeat = "question in questions track by $index">
 								<h4><strong>{{question.q_text}}</strong></h4>
 								<div class="radio">
-							      <label><input type="radio" ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="10" />{{question.q_a1}}</label>
+							      <label><input type="radio" ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="10" required/>{{question.q_a1}}</label>
 							    </div>
 							    <div class="radio">
-							      <label><input type="radio"  ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="8" />{{question.q_a2}}</label>
+							      <label><input type="radio"  ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="8" required/>{{question.q_a2}}</label>
 							    </div>
 							    <div class="radio">
-							      <label><input type="radio" ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="6" />{{question.q_a3}}</label>
+							      <label><input type="radio" ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="6" required />{{question.q_a3}}</label>
 							    </div>
 							    <div class="radio">
-							      <label><input type="radio" ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="4" />{{question.q_a4}}</label>
+							      <label><input type="radio" ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="4" required/>{{question.q_a4}}</label>
 							    </div>
 							</li>
 							

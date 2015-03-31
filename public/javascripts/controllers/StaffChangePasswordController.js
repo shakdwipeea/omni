@@ -38,4 +38,12 @@ angular.module('omni')
 			$scope.message = "Error occured";
 		})
 	}
+
+        $scope.logout = function  () {
+            delete $window.sessionStorage.teacher_id;
+            delete $window.sessionStorage.table;
+            delete $window.sessionStorage.sub;
+
+            $state.go('staff_appraisal_login');
+        }
 })

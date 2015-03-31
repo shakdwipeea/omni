@@ -18,6 +18,10 @@ angular.module('omni')
         return $http.post('/feedback', data);
     };
 
+    var completeAppraisal = function (data) {
+        return $http.post('/complete_appraisal', data);
+    }
+
 	/*var getTeacherDetails = function  (usn) {
 		return _teacherDetails(usn);
 	}*/
@@ -46,6 +50,8 @@ angular.module('omni')
 				});
 		},
 
-        submit: sendFeedback
+        submit: sendFeedback,
+
+        complete: completeAppraisal
 	};
 });

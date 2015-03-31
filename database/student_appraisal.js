@@ -58,7 +58,7 @@ module.exports = function(usn, callback) {
                     {
                        return callback({
                             err:true,
-                            msg:'Not allowed'
+                            msg:'Appraisal not enabled.'
                        });
                     } 
                     else
