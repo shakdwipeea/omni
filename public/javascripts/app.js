@@ -61,6 +61,4 @@ angular.module('omni',['ui.router'])
 			controller: 'StaffChangePasswordController'
 		})
 		;
-
-
 });	

@@ -116,6 +116,7 @@ angular.module('omni')
             });
 
             var dataSubmit = {
+                comments: $scope.comments,
                 curTeacher: $scope.teachers[$scope.active.id],
                 givenAppraisal: $scope.givenAppraisal,
                 totalAppraisal: $scope.totalAppraisal
@@ -125,7 +126,7 @@ angular.module('omni')
                 .then(function (response) {
                     if(response.data === 'true')
                     {
-
+                        $scope.comments= "";
                         console.log("Submitted");
                         $scope.alert_hide = false;
                         $scope.result = true;

@@ -21,9 +21,7 @@ angular.module('omni')
 
             $state.go('staff_appraisal_login');
             return;
-        };
-
-
+        }
         $scope.subject = $window.sessionStorage.sub;
 
         var sync = 0;
@@ -69,8 +67,7 @@ angular.module('omni')
             else if (type === 'theory') 
             {
                 question = $scope.theory;
-            };
-
+            }
             sync_now();
         
         });
@@ -86,9 +83,10 @@ angular.module('omni')
 
             sync++;
 
-            console.log('Data in Staff Report cont. ', data)
+            console.log('Data in Staff Report cont. ', data);
             $scope.total = data.total;
             $scope.done = data.appraised;
+            $scope.comments = data.comments;
 
             delete data.total;
             delete data.appraised;
@@ -114,10 +112,10 @@ angular.module('omni')
             if (sync === 2)
             {
                 
-                console.log('scores', scores)
+                console.log('scores', scores);
                 $scope.question = _.object(question, scores);
                 console.log('question', question);
-            };
+            }
         }
         
     });

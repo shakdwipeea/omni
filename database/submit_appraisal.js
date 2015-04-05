@@ -36,9 +36,9 @@ module.exports = function (dataReceived, callback) {
 
             if(data.type === 't')
             {
-                query = "UPDATE ?? SET q1_" + count + " = ? , q2_" + count + " = ? , q3_" + count + " = ?, q4_" + count + " = ?, q5_" + count + " = ?, q6_" + count + " = ?,q7_" + count + " = ?, q8_" + count + " = ?, q9_" + count + " = ?, q10_" + count + " = ?, q11_" + count + " = ?,q12_" + count + " = ?, q13_" + count + " = ?, q14_" + count + " = ?, q15_" + count + " = ?, appraisal_complete_"+ count +" = 1  WHERE usn = ?"
+                query = "UPDATE ?? SET q1_" + count + " = ? , q2_" + count + " = ? , q3_" + count + " = ?, q4_" + count + " = ?, q5_" + count + " = ?, q6_" + count + " = ?,q7_" + count + " = ?, q8_" + count + " = ?, q9_" + count + " = ?, q10_" + count + " = ?, q11_" + count + " = ?,q12_" + count + " = ?, q13_" + count + " = ?, q14_" + count + " = ?, q15_" + count + " = ?, appraisal_complete_"+ count +" = 1, comments_"+ count + " = ?  WHERE usn = ?"
             } else {
-                query = "UPDATE ?? SET q1_" + count + " = ? , q2_" + count + " = ? , q3_" + count + " = ?, q4_" + count + " = ?, q5_" + count + " = ?, q6_" + count + " = ?,q7_" + count + " = ?, q8_" + count + " = ?, q9_" + count + " = ?, q10_" + count + " = ?, appraisal_complete_"+ count +"=1 WHERE usn = ?"
+                query = "UPDATE ?? SET q1_" + count + " = ? , q2_" + count + " = ? , q3_" + count + " = ?, q4_" + count + " = ?, q5_" + count + " = ?, q6_" + count + " = ?,q7_" + count + " = ?, q8_" + count + " = ?, q9_" + count + " = ?, q10_" + count + " = ?, appraisal_complete_"+ count +"=1 , comments_" + count +" = ? WHERE usn = ?"
             }
 
             //hack because givenAppraisal is updated on client only after the response from here
@@ -66,7 +66,7 @@ module.exports = function (dataReceived, callback) {
 
             //todo improve this for second appraisal
 
-            query = mysql.format(query, _.flatten([data.app, answers , data.usn]));
+            query = mysql.format(query, _.flatten([data.app, answers , dataReceived.comments, data.usn]));
 
             console.log(query);
 
