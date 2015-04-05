@@ -25,7 +25,7 @@
 				  	<div class="row">
 						<div class="col-md-9">
 							<h4 class="list-group-item-heading">{{value.details.first_name}}</h4>
-				    		<p class="list-group-item-text">{{key}}</p>
+				    		<p class="list-group-item-text">{{value.subCode}}</p>
 						</div>
 						<div class="col-md-3 hidden">
 							<span id="q1_badge" class="badge badge-active">DONE</span>
@@ -54,7 +54,7 @@
 					  			<td> <h4> Staff Name: </h4></td>
 					  			<td> <h4> <strong>{{active.teacher.details.first_name}}</strong> </h4></td>
 					  			<td rowspan="3">
-					  				<img src="http://www.rvce.edu.in/images/faculty/cse_anjank.jpg" style="width:160px;height:160px;" class="pull-right">
+					  				<img src="http://localhost:3000/pics/{{active.teacher.id}}.jpg" style="width:160px;height:160px;" class="pull-right">
 					  			</td>
 					  		</tr>				  		
 					  		<tr>
@@ -63,7 +63,7 @@
 					  		</tr>				  		
 					  		<tr>
 					  			<td> <h4>Code: </h4></td>
-					  			<td> <h4> <strong>{{active.id}}</strong> </h4></td>
+					  			<td> <h4> <strong>{{active.teacher.subCode}}</strong> </h4></td>
 					  		</tr>
 				  		</tbody>
 				  	</table>
