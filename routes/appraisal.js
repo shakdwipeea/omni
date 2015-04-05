@@ -124,6 +124,10 @@ var appraisalApi = function(app) {
                 message: 'Blank Request'
             });
         }
+    });
+
+    app.get('/pictures', function (req, res) {
+
     })
 
     

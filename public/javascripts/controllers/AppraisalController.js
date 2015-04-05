@@ -19,11 +19,11 @@ angular.module('omni')
     	
     	$scope.teachers = AppraisalFactory.teacherDetails().data;
 
-    	var ids = $scope.teachers.teacher_ids;
+    	var ids = $scope.teachers.appraisal_ids;
         var count = $scope.teachers.appraisal_count;
 
-        delete $scope.teachers.appraisal_count;;
-    	delete $scope.teachers.teacher_ids;
+        delete $scope.teachers.appraisal_count;
+        delete $scope.teachers.appraisal_ids;
 
     	console.log($scope.teachers);
 
@@ -54,7 +54,7 @@ angular.module('omni')
     		console.log("lab Questions",labQuestions);
 
     		updateQuestions(ids[1]);   	
-        })
+        });
 
         function updateQuestions(key) {
             $scope.alert_hide = true;
@@ -62,7 +62,7 @@ angular.module('omni')
             $scope.active = {
                 id: key,
                 teacher: $scope.teachers[key]
-            }
+            };
 
             console.log("Active questions ", $scope.active.id);
             console.log("Active questions type", $scope.active.teacher.type);
@@ -89,12 +89,12 @@ angular.module('omni')
 
             if($scope.teachers[key].done)
             {
-                return;
+
             }
             else {
                 updateQuestions(key);
             }
-        }
+        };
 
         $scope.submit = function () {
 
@@ -119,7 +119,7 @@ angular.module('omni')
                 curTeacher: $scope.teachers[$scope.active.id],
                 givenAppraisal: $scope.givenAppraisal,
                 totalAppraisal: $scope.totalAppraisal
-            }
+            };
 
             AppraisalFactory.submit(dataSubmit)
                 .then(function (response) {

@@ -5,7 +5,7 @@ module.exports = function(usn, callback) {
     var _questions = [];
 
     var data = {
-        teacher_ids:[]
+        appraisal_ids:[]
     };
 
     _ = require('underscore');
@@ -118,16 +118,16 @@ module.exports = function(usn, callback) {
                                 idsReturned.push(id);
                                 if (idsReturned.length === compoundKeys.length) {
 
-                                    console.log("Teacher_ids are ",data.teacher_ids);
+                                    console.log("Teacher_ids are ",data.appraisal_ids[0]);
 
                                     //data.appraisal_val = row['appraisal_val'];
                                     //todo: add support for appraisal val use data.compound_key Good Luck!
 
 
 
-                                    for (var i = 0; i < data.teacher_ids.length; i++) {
+                                    for (var i = 0; i < data.appraisal_ids.length; i++) {
 
-                                        _getTeacherDetails(data.teacher_ids[i],callback);
+                                        _getTeacherDetails(data[data.appraisal_ids[i]],callback);
                                     };
 
 
@@ -173,7 +173,7 @@ module.exports = function(usn, callback) {
 
     function _getQuestionAndTeacher (compoundKey,clbk) {
         // body.
-        var query = "Select sub_name,sub_name_short,teacher_id_1, teacher_id_2, teacher_id_3, type, appraisal_teacher_1, appraisal_teacher_2, appraisal_teacher_3,type from map_table where compound_key=?";
+        var query = "Select subject_code,sub_name,sub_name_short,teacher_id_1, teacher_id_2, teacher_id_3, type, appraisal_teacher_1, appraisal_teacher_2, appraisal_teacher_3,type from map_table where compound_key=?";
 
         query = mysql.format(query,[compoundKey]);
 
@@ -206,14 +206,16 @@ module.exports = function(usn, callback) {
 
 
                     for (var i = 1; i < 4; i++) {
-                        if (row['teacher_id_' + i]) {
-                            data.teacher_ids.push(row['teacher_id_'+ i]);
-                            data[row['teacher_id_' + i]] = {
+                        if (row['appraisal_teacher_' + i]) {
+                            data.appraisal_ids.push(row['appraisal_teacher_'+ i]);
+                            data[row['appraisal_teacher_' + i]] = {
                                 type:'',
-                                app:'',
+                                app: '',
+                                id:'',
                                 usn: usn,
                                 subName: row['sub_name'],
-                                subShortName: row['sub_name_short']
+                                subShortName: row['sub_name_short'],
+                                subCode: row['subject_code']
                             };
                         }
 
@@ -223,9 +225,9 @@ module.exports = function(usn, callback) {
 
                                 console.log("Teacher id ",row['teacher_id_' + i]);
 
-                                data[row['teacher_id_' + i]].type = row['type'];
-                                data[row['teacher_id_' + i]].app = row['appraisal_teacher_' + i];
-
+                                data[row['appraisal_teacher_' + i]].type = row['type'];
+                                data[row['appraisal_teacher_' + i]].id = row['teacher_id_' + i];
+                                data[row['appraisal_teacher_' + i]].app = row['appraisal_teacher_' + i];
                                 console.log("Data is ",data);
                             }
                         }
@@ -237,20 +239,7 @@ module.exports = function(usn, callback) {
 
                     clbk(compoundKey);
 
-                    ///All the teacher should be in array
 
-                    /* console.log("Teacher_ids are ",data.teacher_ids);
-
-                     //data.appraisal_val = row['appraisal_val'];
-                     //todo: add support for appraisal val use data.compound_key Good Luck!
-
-
-
-                     for (var i = 0; i < data.teacher_ids.length; i++) {
-
-                     _getTeacherDetails(data.teacher_ids[i], compoundKey,clbk);
-                     };
-                     */
                 }
 
             }
@@ -259,13 +248,13 @@ module.exports = function(usn, callback) {
 
 
 
-    function  _getTeacherDetails(teacherId,callback) {
+    function  _getTeacherDetails(appraisalId,callback) {
         // body...
         var q = "select first_name, middle_name, last_name, staff_initial from teacher_details where teacher_id = ?"
 
-        q = mysql.format(q,[teacherId]);
+        q = mysql.format(q,[appraisalId.id]);
 
-        console.log("Query is in ??? ",q);
+        console.log("Query is in getTeacherDetials ",q);
 
         var k = connection.query(q, function  (err,rows) {
             if (err) {
@@ -275,15 +264,15 @@ module.exports = function(usn, callback) {
             else {
                 console.log("Rows in this query is ", rows);
                 //clbk(tableName,data);
-                console.log("Teacher id is ", teacherId);
-                data[teacherId]['details'] = rows[0];
+                console.log("Teacher id is ", appraisalId);
+                data[appraisalId.app]['details'] = rows[0];
             }
         });
 
         k.on('end', function  () {
             count++;
             console.log("Hi!");
-            if (count === data.teacher_ids.length)  {
+            if (count === data.appraisal_ids.length)  {
                 ///DOne with all queries
                 //console.log("Data is ", data);
                 callback(data);
