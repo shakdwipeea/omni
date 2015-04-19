@@ -28,13 +28,9 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0a4023b-f3e3-48eb-b1c7-c2d1c331918a" name="Default" comment="MUltiple Teacher bug fixed. IMages done">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/controllers/AppraisalController.js" afterPath="$PROJECT_DIR$/public/javascripts/controllers/AppraisalController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/controllers/StaffReport.js" afterPath="$PROJECT_DIR$/public/javascripts/controllers/StaffReport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/app.js" afterPath="$PROJECT_DIR$/public/javascripts/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/appraisal_detail.ejs" afterPath="$PROJECT_DIR$/public/templates/appraisal_detail.ejs" />
+    <list default="true" id="b0a4023b-f3e3-48eb-b1c7-c2d1c331918a" name="Default" comment="Comments added in db">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/staff_report.ejs" afterPath="$PROJECT_DIR$/public/templates/staff_report.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/submit_appraisal.js" afterPath="$PROJECT_DIR$/database/submit_appraisal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/student_appraisal.js" afterPath="$PROJECT_DIR$/database/student_appraisal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Omniscient.iws" />
@@ -79,6 +75,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="student_appraisal.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/student_appraisal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6911765" vertical-offset="1212" max-vertical-offset="5292">
+              <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="appraisal.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/appraisal.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -95,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/database/final_submit_appraisal.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -121,11 +127,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="staff_report.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="staff_report.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/templates/staff_report.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52755904" vertical-offset="951" max-vertical-offset="1332">
-              <caret line="64" column="171" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="174" />
+            <state vertical-scroll-proportion="-3.0370371" vertical-offset="746" max-vertical-offset="1332">
+              <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -134,18 +140,8 @@
       <file leaf-file-name="StaffReport.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/StaffReport.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1415" max-vertical-offset="2322">
-              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="appraisal_index.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/templates/appraisal_index.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.592592" vertical-offset="164" max-vertical-offset="738">
-              <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1361" max-vertical-offset="2268">
+              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -154,7 +150,7 @@
       <file leaf-file-name="student.dashboard.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/templates/student.dashboard.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="92.0" vertical-offset="2484" max-vertical-offset="4266">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2484" max-vertical-offset="4266">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -193,11 +189,9 @@
         <option value="$PROJECT_DIR$/public/javascripts/controllers/StaffDashboardController.js" />
         <option value="$PROJECT_DIR$/public/templates/appraisal_staff_dashboard.ejs" />
         <option value="$PROJECT_DIR$/public/javascripts/factories/appraisal_factories.js" />
-        <option value="$PROJECT_DIR$/database/final_submit_appraisal.js" />
         <option value="$PROJECT_DIR$/public/javascripts/controllers/StudentLoginController.js" />
         <option value="$PROJECT_DIR$/public/javascripts/controllers/StaffChangePasswordController.js" />
         <option value="$PROJECT_DIR$/public/templates/appraisal_change_password.ejs" />
-        <option value="$PROJECT_DIR$/database/student_appraisal.js" />
         <option value="$PROJECT_DIR$/routes/appraisal.js" />
         <option value="$PROJECT_DIR$/public/javascripts/app.js" />
         <option value="$PROJECT_DIR$/public/templates/appraisal_detail.ejs" />
@@ -206,6 +200,8 @@
         <option value="$PROJECT_DIR$/public/javascripts/controllers/StaffReport.js" />
         <option value="$PROJECT_DIR$/database/staff_report.js" />
         <option value="$PROJECT_DIR$/public/templates/staff_report.ejs" />
+        <option value="$PROJECT_DIR$/database/final_submit_appraisal.js" />
+        <option value="$PROJECT_DIR$/database/student_appraisal.js" />
       </list>
     </option>
   </component>
@@ -216,10 +212,9 @@
     <data>$USER_HOME$/.nvm/v0.10.32/lib/node_modules/mocha</data>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
     <option name="y" value="27" />
-    <option name="width" value="1368" />
-    <option name="height" value="742" />
+    <option name="width" value="1366" />
+    <option name="height" value="741" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -244,6 +239,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -406,7 +402,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -611,26 +606,32 @@
       <option name="project" value="LOCAL" />
       <updated>1428224827300</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Comments added in db">
+      <created>1428263153629</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1428263153629</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="27" width="1368" height="742" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="27" width="1366" height="741" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2857143" sideWeight="0.511713" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30109206" sideWeight="0.48828697" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30109206" sideWeight="0.511713" order="10" side_tool="true" content_ui="tabs" x="65" y="52" width="1301" height="716" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3" sideWeight="0.48753667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3" sideWeight="0.51246333" order="10" side_tool="true" content_ui="tabs" x="65" y="52" width="1301" height="716" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27086383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26979473" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TeamCity" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40405616" sideWeight="0.49633968" order="3" side_tool="false" content_ui="tabs" x="-11" y="415" width="1366" height="343" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.390625" sideWeight="0.49560118" order="3" side_tool="false" content_ui="tabs" x="-11" y="415" width="1366" height="343" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -689,7 +690,8 @@
     <MESSAGE value="Staff dahboard by jayanth integrated . Ui completed for student dashboard appraisal. Server finished for report generation. Some extra lines in StaffDashboardController" />
     <MESSAGE value="All tables now being updated. Added validation on client side. Added notification on completeting the appraisal." />
     <MESSAGE value="MUltiple Teacher bug fixed. IMages done" />
-    <option name="LAST_COMMIT_MESSAGE" value="MUltiple Teacher bug fixed. IMages done" />
+    <MESSAGE value="Comments added in db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Comments added in db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1072,13 +1074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/student_appraisal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3371" max-vertical-offset="5292">
-          <caret line="217" column="53" selection-start-line="217" selection-start-column="53" selection-end-line="217" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/StaffDashboardController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="936">
@@ -1109,7 +1104,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1368">
           <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1124,7 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1422">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1132,13 +1125,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="635" max-vertical-offset="1260">
           <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/templates/appraisal_index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.592592" vertical-offset="164" max-vertical-offset="738">
+        <state vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="738">
           <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
           <folding />
         </state>
@@ -1146,16 +1138,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/templates/student.dashboard.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="92.0" vertical-offset="2484" max-vertical-offset="4266">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2484" max-vertical-offset="4266">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/final_submit_appraisal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1168,29 +1152,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/templates/appraisal_detail.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0" vertical-offset="1458" max-vertical-offset="1998">
-          <caret line="90" column="99" selection-start-line="90" selection-start-column="99" selection-end-line="90" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/controllers/StaffReport.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1415" max-vertical-offset="2322">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1361" max-vertical-offset="2268">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/appraisal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="2520">
-          <caret line="46" column="51" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1212,8 +1178,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/templates/staff_report.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52755904" vertical-offset="951" max-vertical-offset="1332">
-          <caret line="64" column="171" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="174" />
+        <state vertical-scroll-proportion="-3.0370371" vertical-offset="746" max-vertical-offset="1332">
+          <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/final_submit_appraisal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/appraisal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="2520">
+          <caret line="46" column="51" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/appraisal_detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0" vertical-offset="1458" max-vertical-offset="1998">
+          <caret line="90" column="99" selection-start-line="90" selection-start-column="99" selection-end-line="90" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/student_appraisal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6911765" vertical-offset="1212" max-vertical-offset="5292">
+          <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
           <folding />
         </state>
       </provider>

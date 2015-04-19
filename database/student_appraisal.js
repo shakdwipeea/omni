@@ -81,7 +81,7 @@ module.exports = function(usn, callback) {
 
     function  _getCompound(sem,usn) {
         // body...
-        var query = "select class_id, subject_1, subject_2, subject_3 subject_4, subject_5, subject_6, subject_7, subject_8, class_elective_id_1, class_elective_id_2, class_elective_id_3 , class_lab_id_1, class_lab_id_2, class_lab_id_3  from cse_" + sem + "_sem WHERE usn = ?";
+        var query = "select * from cse_" + sem + "_sem WHERE usn = ?";
 
         query = mysql.format(query,[usn]);
 
