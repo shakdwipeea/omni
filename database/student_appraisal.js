@@ -24,15 +24,15 @@ module.exports = function(usn, callback) {
     var checkingUsn = connection.query(query, function(err, rows) {
         var sem;
         console.log("Rows are",rows[0]);
-        if (err) 
+        if (err)
         {
             return callback(null);
-        } 
-        else if (!rows[0]) 
+        }
+        else if (!rows[0])
         {
             return callback('No such Usn');
-        } 
-        else 
+        }
+        else
         {
             //console.log();
             sem = rows[0].semester;
@@ -43,7 +43,7 @@ module.exports = function(usn, callback) {
             var go = false;
 
             var q = connection.query(query, function  (err, rows) {
-                if (err) 
+                if (err)
                 {
                     console.log(err);
                     return callback({
@@ -54,13 +54,13 @@ module.exports = function(usn, callback) {
                 else
                 {
                     console.log('Line 46',rows[0]);
-                    if (rows[0].enable != 1) 
+                    if (rows[0].enable != 1)
                     {
                        return callback({
                             err:true,
                             msg:'Appraisal not enabled.'
                        });
-                    } 
+                    }
                     else
                     {
                         go = true;
@@ -94,6 +94,16 @@ module.exports = function(usn, callback) {
             else {
                 compoundKeys = [];
                 console.log("Rows are ", rows);
+
+                if(rows[0].appraisal_complete_1 === 1) {
+                  callback({
+                    err: true,
+                    msg: 'Step Aside. You have completed your appraisal'
+                  })
+                  return;
+                }
+
+
                 compoundKeys = _getCompoundKeys(rows[0]);
                 console.log("Compound Keys are ", compoundKeys);
 
@@ -285,4 +295,3 @@ module.exports = function(usn, callback) {
 
 
 };
-

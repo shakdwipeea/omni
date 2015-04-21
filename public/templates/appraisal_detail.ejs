@@ -53,13 +53,13 @@
 					  			<td> <h4> Staff Name: </h4></td>
 					  			<td> <h4> <strong>{{active.teacher.details.first_name}}</strong> </h4></td>
 					  			<td rowspan="3">
-					  				<img src="http://localhost:3000/pics/{{active.teacher.id}}.jpg" style="width:160px;height:160px;" class="pull-right">
+					  				<img src="./pics/{{active.teacher.id}}.jpg" style="width:160px;height:160px;" class="pull-right">
 					  			</td>
-					  		</tr>				  		
+					  		</tr>
 					  		<tr>
 					  			<td> <h4> Subject: </h4></td>
 					  			<td> <h4> <strong>{{active.teacher.subName}}</strong> </h4></td>
-					  		</tr>				  		
+					  		</tr>
 					  		<tr>
 					  			<td> <h4>Code: </h4></td>
 					  			<td> <h4> <strong>{{active.teacher.subCode}}</strong> </h4></td>
@@ -88,11 +88,11 @@
 							      <label><input type="radio" ng-model="question.answer" class="rad-btn" name='{{question.q_id}}' value="4" required/>{{question.q_a4}}</label>
 							    </div>
 							</li>
-							<input type="text" placeholder="Comments" class="" ng-model="comments"/>
+							<input type="text" placeholder="Comments" class="comment" ng-model="comments"/>
 
-						</ol>	
+						</ol>
 
-						<button ng-click="submit()" type="submit" class="btn btn-primary btn-submit btn-lg">Submit</button>			
+						<button ng-click="submit()" type="submit" class="btn btn-primary btn-submit btn-lg">Submit</button>
 					</div>
 				</div>
 
@@ -101,5 +101,3 @@
 			</div>
 		</div>
 	</div>
-
-

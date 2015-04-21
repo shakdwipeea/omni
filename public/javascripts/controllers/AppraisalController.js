@@ -16,7 +16,7 @@ angular.module('omni')
     			first_name: 'Akash'
     		}
     	};
-    	
+
     	$scope.teachers = AppraisalFactory.teacherDetails().data;
 
     	var ids = $scope.teachers.appraisal_ids;
@@ -35,12 +35,12 @@ angular.module('omni')
     	.then(function  (questions) {
     		//$scope.questions = questions;
     		console.log("Questions are",questions);
-    		for (var i = 0; i < questions.length; i++) 
+    		for (var i = 0; i < questions.length; i++)
             {
-    			if(questions[i].q_type === 'l') 
+    			if(questions[i].q_type === 'l')
                 {
     				labQuestions.push(questions[i]);
-    			} 
+    			}
     			else if (questions[i].q_type === 't')
                 {
     				theoryQuestions.push(questions[i]);
@@ -53,7 +53,7 @@ angular.module('omni')
     		console.log("Theory Questions",theoryQuestions);
     		console.log("lab Questions",labQuestions);
 
-    		updateQuestions(ids[1]);   	
+    		updateQuestions(ids[1]);
         });
 
         function updateQuestions(key) {
@@ -102,7 +102,7 @@ angular.module('omni')
             {
                 if($scope.questions[i].answer === "" || $scope.questions[i].answer === null || !$scope.questions[i].answer )
                 {
-                    alert('Fill all the columns asshole');
+                    alert('Fill all the columns ');
                     return;
                 }
 
