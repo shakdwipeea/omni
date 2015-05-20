@@ -8,6 +8,8 @@ module.exports = function (dataReceived, callback) {
     mysql = require('mysql');
     conn = require('./conn');
     _ = require('underscore');
+
+    var moment = require('moment');
     done = false;
 
     var data = dataReceived.curTeacher;
@@ -19,6 +21,8 @@ module.exports = function (dataReceived, callback) {
     var error = false;
 
     var appraisalComplete = false;
+
+    console.log('Date is',moment().format("YYYY-MM-DD HH:mm"));
 
     //_.each(data, function (sub, index) {
 
@@ -54,7 +58,7 @@ module.exports = function (dataReceived, callback) {
 
             var appraisalCompleteWrite = appraisalComplete === true ? 1 : 0;
             var tableName = 'cse_' + data.app.substr(14,1) + '_sem';
-            var dateComplete = appraisalComplete === true ? Date.now() : 0;
+            var dateComplete = appraisalComplete === true ? moment().format("YYYY-MM-DD") : 0;
 
 
 

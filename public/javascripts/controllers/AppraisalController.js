@@ -97,6 +97,8 @@ angular.module('omni')
         };
 
         $scope.submit = function () {
+	
+            console.log("Submit");
 
             for(var i = 0; i < $scope.questions.length; i++)
             {
@@ -120,17 +122,19 @@ angular.module('omni')
                 curTeacher: $scope.teachers[$scope.active.id],
                 givenAppraisal: $scope.givenAppraisal,
                 totalAppraisal: $scope.totalAppraisal
+                
             };
 
             AppraisalFactory.submit(dataSubmit)
                 .then(function (response) {
-                    if(response.data === 'true')
+		    console.log(response);
+                    if(response.data === true)
                     {
                         $scope.comments= "";
                         console.log("Submitted");
                         $scope.alert_hide = false;
                         $scope.result = true;
-                       // console.log("Working---Jayanth")
+                       console.log("Working---Jayanth")
                         $scope.givenAppraisal++;
 
                         if($scope.givenAppraisal === $scope.totalAppraisal)
@@ -140,8 +144,10 @@ angular.module('omni')
                         }
 
                     }
+			
                 }, function (reason) {
-                    console.log('An Error occured');
+		    alert(reason);
+                    console.log('An Error occured', reason);
                 });
         };
 
