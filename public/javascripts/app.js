@@ -55,6 +55,11 @@ angular.module('omni',['ui.router'])
 			templateUrl: '/templates/appraisal_staff_csv.ejs',
 			controller: 'StaffCsvController'
 		})
+		.state('staff_flag_admin', {
+			url:'/report_admin',
+			templateUrl: '/templates/appraisal_report_admin.ejs',
+			controller: 'StaffFlagController'
+		})
 		.state('staff_change_password',{
 			url:'/change_password',
 			templateUrl: '/templates/appraisal_change_password.ejs',

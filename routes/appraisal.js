@@ -129,6 +129,24 @@ var appraisalApi = function(app) {
     app.get('/pictures', function (req, res) {
 
     })
+    
+    app.post('/flag_admin', function (req, res) {
+        var flagError = require('../database/flag_error');
+
+        if (req.body) 
+        {
+            flagError(req.body.data, function  (response) {
+                res.json(response);
+            })
+        } 
+        else 
+        {
+            res.json ({
+                err: true,
+                message: 'Blank Request'
+            });
+        }
+    })
 
     
 };

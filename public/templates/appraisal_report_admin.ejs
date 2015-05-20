@@ -1,0 +1,29 @@
+	<nav class="navbar navbar-default">
+	  <div class="container container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <img alt="Brand" src="/images/faculty.png" class="logo">
+	        <a class="navbar-brand brand-text" href="#">Faculty Dashboard</a>
+
+
+	      </a>
+	    </div>
+	    <a ng-click="logout()"><p class="navbar-text navbar-right navbar-link">Logout</p></a>
+	  </div>
+	</nav>
+
+	<div class="container">
+		<div class="row content size-small">
+			<div class="col-lg-12">
+				<div class="row">
+				Enter comments:<br />
+					<input type="textarea" name="comment" ng-model="comments"  placeholder="Enter comments here"/>
+				</div>
+				<br>
+				<div class="row">
+				</div>
+				<br>
+				<input type="submit" ng-click="submit()" class="btn btn-primary">
+			</div>
+		</div>
+	</div>
