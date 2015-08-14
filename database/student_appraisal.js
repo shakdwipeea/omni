@@ -23,7 +23,7 @@ module.exports = function(usn, callback) {
     console.log("Query us ",query);
     var checkingUsn = connection.query(query, function(err, rows) {
         var sem;
-        console.log("Rows are",rows[0]);
+       // console.log("Rows are",rows[0]);
         if (err)
         {
             return callback(null);
@@ -34,7 +34,7 @@ module.exports = function(usn, callback) {
         }
         else
         {
-            //console.log();
+            console.log("Rowws are", rows[0]);
             sem = rows[0].semester;
 
             query = "SELECT * FROM enable_table WHERE semester = ?";

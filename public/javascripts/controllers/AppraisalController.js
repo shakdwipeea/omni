@@ -127,14 +127,14 @@ angular.module('omni')
 
             AppraisalFactory.submit(dataSubmit)
                 .then(function (response) {
-		    console.log(response);
-                    if(response.data === true)
+		              console.log(response);
+                    if(response.data)   
                     {
                         $scope.comments= "";
                         console.log("Submitted");
                         $scope.alert_hide = false;
                         $scope.result = true;
-                       console.log("Working---Jayanth")
+                       console.log("Wtf u lukin at")
                         $scope.givenAppraisal++;
 
                         if($scope.givenAppraisal === $scope.totalAppraisal)
@@ -146,7 +146,7 @@ angular.module('omni')
                     }
 			
                 }, function (reason) {
-		    alert(reason);
+		              alert("Error Occured.");
                     console.log('An Error occured', reason);
                 });
         };
