@@ -148,6 +148,35 @@ var appraisalApi = function(app) {
         }
     })
 
+    app.post('/check_complete', function  (req, res) {
+        console.log('Received request+', req.body);
+        if (req.body.app && req.body.count && req.body.usn) {
+            var checkFromDb = require('../database/check_complete_appraisal');
+            checkFromDb({
+                app: req.body.app,
+                count: req.body.count,
+                usn: req.body.usn
+            }, function  (err, flag) {
+                if (err) {
+                    res.json({
+                        err: true,
+                        message: 'No such usn'
+                    });
+                } else {
+                    res.json({
+                        err: false,
+                        isComplete: flag
+                    })
+                }
+            })
+        } else {
+            res.json({
+                err: true,
+                message: 'Send the correct params'
+            })
+        }
+    })
+
     
 };
 

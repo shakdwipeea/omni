@@ -52,6 +52,10 @@ angular.module('omni')
 
         submit: sendFeedback,
 
-        complete: completeAppraisal
+        complete: completeAppraisal,
+
+        checkComplete: function  (data) {
+        	return $http.get('/check_complete', data);
+        }
 	};
 });
