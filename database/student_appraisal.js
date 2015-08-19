@@ -162,7 +162,7 @@ module.exports = function(usn, callback) {
         //hack for 6th sem
 
         for (var i = 1; i < 9; i++) {
-            if (row['subject_' + i] && row.class_id.split('_')[1] !== '6') {
+            if (row['subject_' + i]) {
                 compoundKeys.push(row.class_id + '_' + row['subject_' + i]);
             }
         }
@@ -172,7 +172,7 @@ module.exports = function(usn, callback) {
                 compoundKeys.push(row['class_elective_id_' + i]);
             }
 
-            if (row['class_lab_id_' + i] && row.class_id.split('_')[1] !== '6') {
+            if (row['class_lab_id_' + i]) {
                 compoundKeys.push(row['class_lab_id_' + i]);
             }
 
