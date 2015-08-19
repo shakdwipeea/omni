@@ -12,6 +12,7 @@ module.exports = function  (data, callback) {
 
 	connection.query(query, function  (err, rows) {
 		if (err) {
+			console.log(err);
 			callback(true, null);
 		} else if(rows) {
 			var completeFromDb = rows[0]['appraisal_complete_' + data.count];
@@ -20,5 +21,6 @@ module.exports = function  (data, callback) {
 		} else {
 			callback(true, null);
 		}
+		//connection.end();
 	})
 }

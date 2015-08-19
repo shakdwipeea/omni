@@ -14,6 +14,8 @@ module.exports = function(usn, callback) {
 
     conn = require('../database/conn');
 
+    isComplete = require('../database/check_complete_appraisal');
+
     connection = mysql.createConnection(conn);
 
     query = "select first_name, middle_name, last_name , class_id, semester from student_details where usn = ?";
@@ -239,6 +241,16 @@ module.exports = function(usn, callback) {
                                 data[row['appraisal_teacher_' + i]].type = row['type'];
                                 data[row['appraisal_teacher_' + i]].id = row['teacher_id_' + i];
                                 data[row['appraisal_teacher_' + i]].app = row['appraisal_teacher_' + i];
+/*
+
+                                //Weirf dshoit
+                                checkComplete(usn, data.appraisal_count, row['appraisal_teacher_' + i], i, row);
+
+
+
+                                //
+*/
+
                                 console.log("Data is ",data);
                             }
                         }
@@ -256,8 +268,29 @@ module.exports = function(usn, callback) {
             }
         });
     }
+    var fuckingCount = 0;
+    //Weird shit continued
+    function checkComplete(usn, count, app, cb) {
+        
+        isComplete({
+            usn: usn,
+            count: count,
+            app: app
+        }, function  (err, flag) {
+                fuckingCount++;
+                console.log('Recevied flag', flag, app )
+                if (flag === true) {
+                    delete data[app]
+                    var index = data.appraisal_ids.indexOf(app)
+                    data.appraisal_ids.splice(index, 1);
 
+                }
+                cb();
+        })
 
+    }
+
+    var Sent = true;
 
     function  _getTeacherDetails(appraisalId,callback) {
         // body...
@@ -276,21 +309,51 @@ module.exports = function(usn, callback) {
                 console.log("Rows in this query is ", rows);
                 //clbk(tableName,data);
                 console.log("Teacher id is ", appraisalId);
-                data[appraisalId.app]['details'] = rows[0];
+               
+                    data[appraisalId.app]['details'] = rows[0];
+                
+                
             }
         });
 
         k.on('end', function  () {
             count++;
             console.log("Hi!");
-            if (count === data.appraisal_ids.length)  {
+            //count === data.appraisal_ids.length && fuckingCount == 0
+            if (count === data.appraisal_ids.length )  {
                 ///DOne with all queries
                 //console.log("Data is ", data);
-                connection.end();
-                callback(data);
+                //connection.end();
+                Sent = true;
+                var len = data.appraisal_ids.length;
+                //callback(data);
+                data.appraisal_ids.forEach(function  (id) {
+                    checkComplete(usn, data.appraisal_count, id, function  () {
+                        console.log('c', fuckingCount, 'length', len)
+                        if (fuckingCount === len && data.appraisal_ids.length > 0) {
+                            callback(data);
+                        } else if(data.appraisal_ids.length === 0){
+                            callback({
+                                err: true,
+                                msg: 'Step Aside. You have completed your appraisal'
+                            });
+                        }
+                    })
+                })
             };
         })
     }
+
+
+
+/*    //weird shit again
+    function Final() {
+
+        if (fuckingCount == 0 && count === data.appraisal_ids.length && Sent === false) {
+            callback(data);
+        };
+        
+    }*/
 
 
 
