@@ -326,6 +326,7 @@ module.exports = function(usn, callback) {
                 //connection.end();
                 Sent = true;
                 var len = data.appraisal_ids.length;
+                data.appraisal_total = len;
                 //callback(data);
                 data.appraisal_ids.forEach(function  (id) {
                     checkComplete(usn, data.appraisal_count, id, function  () {

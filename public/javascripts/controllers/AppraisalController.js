@@ -20,12 +20,15 @@ angular.module('omni')
     	};
 
     	$scope.teachers = AppraisalFactory.teacherDetails().data;
+        var len = $scope.teachers.appraisal_total;
+        console.log('LENGTH', len)
 
     	var ids = $scope.teachers.appraisal_ids;
         var count = $scope.teachers.appraisal_count;
 
         delete $scope.teachers.appraisal_count;
         delete $scope.teachers.appraisal_ids;
+        delete $scope.teachers.appraisal_total;
 
     	console.log($scope.teachers);
 
@@ -55,7 +58,7 @@ angular.module('omni')
     		console.log("Theory Questions",theoryQuestions);
     		console.log("lab Questions",labQuestions);
 
-    		updateQuestions(ids[1]);
+    		updateQuestions(ids[0]);// 1 pehle
         });
 
         function updateQuestions(key) {
@@ -128,13 +131,12 @@ angular.module('omni')
                 comments: $scope.comments,
                 curTeacher: $scope.teachers[$scope.active.id],
                 givenAppraisal: $window.localStorage.givenAppraisal,
-                totalAppraisal: $scope.totalAppraisal
-                
+                totalAppraisal: len
             };
 
             $scope.givenAppraisal++;
             $window.localStorage.givenAppraisal++;
-
+ 
             if($scope.givenAppraisal === $scope.totalAppraisal)
                         {   
                             alert("You have completed the appraisal");
