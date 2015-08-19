@@ -66,4 +66,6 @@ angular.module('omni',['ui.router'])
 			controller: 'StaffChangePasswordController'
 		})
 		;
+
+		$httpProvider.interceptors.push('authInterceptor');
 });	

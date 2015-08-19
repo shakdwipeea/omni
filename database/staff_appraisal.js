@@ -32,9 +32,15 @@ module.exports = function (id , password, callback) {
 
         if (err) {
             data.error = err;
+            callback(data);
         }
 
-        if (rows[0]) {
+        if (!rows) {
+            data.error = "No such teacher"
+            callback(data);
+        }
+ 
+        else if (rows[0]) {
             data.error = false;
             _.extend(data, rows);
 
@@ -58,6 +64,7 @@ module.exports = function (id , password, callback) {
         }
         else {
             data.error = 'No column found'
+            callback(data);
         }
 
     });

@@ -1,5 +1,5 @@
 angular.module('omni')
-.factory('AppraisalFactory', function  ($http) {
+.factory('AppraisalFactory', function  ($http, $window) {
 
 	var _questions = [];
 
@@ -22,9 +22,18 @@ angular.module('omni')
         return $http.post('/complete_appraisal', data);
     }
 
+    var queue = false;
+
 	/*var getTeacherDetails = function  (usn) {
 		return _teacherDetails(usn);
 	}*/
+
+	/**
+	mysql close connection
+	totlaAppraisal check 
+	two request for each
+	21 29
+	**/
 
 	return {
 		teacherDetails: function  () {
@@ -52,6 +61,43 @@ angular.module('omni')
 
         submit: sendFeedback,
 
-        complete: completeAppraisal
+        complete: completeAppraisal,
+
+        validateSubmit: function (req) {
+        	this.submit(req)
+        		.then(function  (response) {
+        			console.log('Done', JSON.parse($window.localStorage.pendingRequests).length)
+        			if(response.data) {
+        				var reqs = JSON.parse($window.localStorage.pendingRequests);
+        				var i = reqs.indexOf(req);
+        				reqs.splice(i, 1);
+        				$window.localStorage.pendingRequests = JSON.stringify(reqs);
+        			}
+        		})
+        },
+
+        completePendingRequest: function  () {
+        	console.log("complete pending reqe",$window.localStorage.pendingRequests);
+        	var self = this;
+
+        	if (this.queue) {
+        		console.log('Processing queue')
+        		return
+        	} else {
+        		this.queue = true;
+	        	var reqs = $window.localStorage.pendingRequests;
+	        	if (reqs) {
+	        		reqs = JSON.parse(reqs);
+	        		reqs.forEach(function  (req) {
+	        			self.validateSubmit(req);
+	        		})
+	        	}
+        	}
+        },
+
+        setQueue: function  (Processing) {
+        	this.queue = Processing;
+        }
 	};
 });
+
