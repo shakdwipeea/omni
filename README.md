@@ -1,3 +1,5 @@
+##deprecated in favour of omni2.0 not open sourced
+
 # omni
 OMNISCIENT PROJECT
 
